@@ -97,7 +97,7 @@ NS_INLINE NSString *NSCacheSubPath(NSString *file)
 }
 
 //
-NS_INLINE NSString *NSCacheUrlPath(NSString *url)
+NS_INLINE NSString *NSUrlPath(NSString *url)
 {
 	unichar chars[256];
 	NSRange range = {0, MIN(url.length, 256)};
@@ -119,8 +119,13 @@ NS_INLINE NSString *NSCacheUrlPath(NSString *url)
 				break;
 		}
 	}
-	NSString *file = [NSString stringWithCharacters:chars length:range.length];
-	return NSCacheSubPath(file);
+	return [NSString stringWithCharacters:chars length:range.length];
+}
+
+//
+NS_INLINE NSString *NSCacheUrlPath(NSString *url)
+{
+	return NSCacheSubPath(NSUrlPath(url));
 }
 
 //
