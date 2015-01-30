@@ -37,18 +37,72 @@ int main()
 		// 信息
 		NSProcessInfo *processInfo = NSProcessInfo.processInfo;
 		NSString *processName = processInfo.processName;
-		//NSArray *arguments = processInfo.arguments;
-		//NSLog(@"Process(%@) ARGS(%@) UID(%d)", processName, arguments, geteuid());
-		if ([processName isEqualToString:@"SpringBoard"])
-		{
-			// 初始化函数指针
-			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
-			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
-
-			//
-			//_HOOKMSG(SBAssistantController__presentForMainScreenAnimated_completion, SBAssistantController,  _presentForMainScreenAnimated:completion:);
-			_HOOKMSG(SBAssistantController_uiPluginWantsActivation_forEvent_completion, SBAssistantController,  uiPluginWantsActivation:forEvent:completion:);
-		}
+		NSArray *arguments = processInfo.arguments;
+		NSLog(@"Process(%@) ARGS(%@) UID(%d)", processName, arguments, geteuid());
+//		if ([processName isEqualToString:@"SpringBoard"])
+//		{
+//			// 初始化函数指针
+//			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
+//			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
+//
+//			//
+//			//_HOOKMSG(SBAssistantController__presentForMainScreenAnimated_completion, SBAssistantController,  _presentForMainScreenAnimated:completion:);
+//			_HOOKMSG(SBAssistantController_uiPluginWantsActivation_forEvent_completion, SBAssistantController,  uiPluginWantsActivation:forEvent:completion:);
+//		}
+		[[[UIAlertView alloc] initWithTitle:@"哈哈" message:@"好了" delegate:nil cancelButtonTitle:@"好嘞" otherButtonTitles:nil] show];
 	}
 	return 0;
 }
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilityCreateWithAddress(int a)
+{
+	NSLog(@"SCNetworkReachabilityCreateWithAddress");
+
+	return _SCNetworkReachabilityCreateWithAddress(a);
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilityCreateWithName(float b, int a)
+{
+	NSLog(@"SCNetworkReachabilityCreateWithName");
+
+	return _SCNetworkReachabilityCreateWithAddress(b, a);
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilityGetFlags()
+{
+	NSLog(@"SCNetworkReachabilityGetFlags");
+
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilityScheduleWithRunLoop()
+{
+	NSLog(@"SCNetworkReachabilityScheduleWithRunLoop");
+
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilitySetCallback()
+{
+	NSLog(@"SCNetworkReachabilitySetCallback");
+
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilitySetDispatchQueue()
+{
+	NSLog(@"SCNetworkReachabilitySetDispatchQueue");
+
+}
+
+__attribute__((visibility("default")))
+void SCNetworkReachabilityUnscheduleFromRunLoop()
+{
+	NSLog(@"SCNetworkReachabilityUnscheduleFromRunLoop");
+
+}
+
+

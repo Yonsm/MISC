@@ -1,9 +1,8 @@
 
-FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result) = NULL;
+//FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result) = NULL;
 FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result) = NULL;
 
-
-
+//
 MSGHOOK(void, FindFriendEntryViewController_viewDidLoad)
 {
 	NSLog(@"FindFriendEntryViewController_viewDidLoad:%@", self);
@@ -21,6 +20,7 @@ MSGHOOK(void, FindFriendEntryViewController_viewDidLoad)
 //	_LineLog();
 //} ENDHOOK
 
+//
 MSGHOOK(BOOL, NewYearSweetTimeViewController_bNeedMoreFun)
 {
 	NSLog(@"NewYearSweetTimeViewController_bNeedMoreFun:%d", _NewYearSweetTimeViewController_bNeedMoreFun(self, sel));
@@ -34,39 +34,49 @@ MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowHongBaoEntrance)
 	return YES;
 } ENDHOOK
 
+//
 MSGHOOK(BOOL, NewYearShakeMgr_shouldShake)
 {
 	NSLog(@"NewYearShakeMgr_shouldShake:%d", _NewYearShakeMgr_shouldShake(self, sel));
 	return YES;
 } ENDHOOK
+
+//
 MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance)
 {
 	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance(self, sel));
 	return YES;
 } ENDHOOK
+
+//
 MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoEntrance)
 {
 	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoEntrance(self, sel));
 	return YES;
 } ENDHOOK
+
+//
 MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance)
 {
 	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance(self, sel));
 	return YES;
 } ENDHOOK
 
+//
 MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowRedDot)
 {
 	NSLog(@"NewYearCtrlMgr_shouldShowRedDot:%d", _NewYearCtrlMgr_shouldShowRedDot(self, sel));
 	return YES;
 } ENDHOOK
 
+//
 MSGHOOK(id, NewYearCtrlMgr_getRedDotMsg)
 {
 	NSLog(@"NewYearCtrlMgr_getRedDotMsg:%@", _NewYearCtrlMgr_getRedDotMsg(self, sel));
 	return @"哈哈哈哈，红包开启咯";
 } ENDHOOK
 
+//
 int type = 0;
 MSGHOOK(int, NewYearShakeResponse_type)
 {
@@ -76,6 +86,7 @@ MSGHOOK(int, NewYearShakeResponse_type)
 	return type++;
 } ENDHOOK
 
+//
 MSGHOOK(int, NewYearShakeResponse_flag)
 {
 	int ret = _NewYearShakeResponse_flag(self, sel);
@@ -84,6 +95,7 @@ MSGHOOK(int, NewYearShakeResponse_flag)
 	return ret;
 } ENDHOOK
 
+//
 MSGHOOK(id, NewYearShakeResponse_parseFromData, id a3)
 {
 	id ret = _NewYearShakeResponse_parseFromData(self, sel, a3);
@@ -92,6 +104,7 @@ MSGHOOK(id, NewYearShakeResponse_parseFromData, id a3)
 	return ret;
 } ENDHOOK
 
+//
 MSGHOOK(unsigned int, NewYearShakeMgr_getRespType)
 {
 	unsigned int ret = _NewYearShakeMgr_getRespType(self, sel);
@@ -100,6 +113,7 @@ MSGHOOK(unsigned int, NewYearShakeMgr_getRespType)
 	return ret;
 } ENDHOOK
 
+//
 MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned int a4)
 {
 	NSLog(@"NewYearShakeViewController_onNewYearShake_errCode:%@->%d", a3, a4);
@@ -204,10 +218,10 @@ MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned
 			break;
 
 		case 10:
-			//[_controller Report];
+			[_controller Report];
 		{
-			id vc = [[NSClassFromString(@"WCRedEnvelopesRedEnvelopesHistoryListViewController") alloc] init/*WithSponsorResID:110 countDown:110*/];
-			[[(UIViewController *)_controller navigationController] pushViewController:vc animated:YES];
+			//id vc = [[NSClassFromString(@"WCRedEnvelopesRedEnvelopesHistoryListViewController") alloc] init/*WithSponsorResID:110 countDown:110*/];
+			//[[(UIViewController *)_controller navigationController] pushViewController:vc animated:YES];
 		}
 			break;
 	}
@@ -227,23 +241,44 @@ MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 } ENDHOOK
 
 //
+void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP *result)
+{
+	(*(result) = method_setImplementation(class_getInstanceMethod((_class), (sel)), (imp)));
+}
+
+//
 int main()
 {
 #if !DEBUG
 	@autoreleasepool
 #endif
 	{
+		// 初始化函数指针
+		//_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
+		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
+		if (!MSHookMessageEx)
+		{
+			_MSHookMessageEx = MSHookMessageEx;	// Fall back in unjailbreak mode
+
+			//dlopen("@executable_path/CydiaSubstrate", RTLD_LAZY);
+			//NSLog(@"Error: %s", dlerror());
+
+			//_PTRFUN(@executable_path/CydiaSubstrate, MSHookFunction);
+			//_PTRFUN(@executable_path/CydiaSubstrate, MSHookMessageEx);
+
+			extern void AccelerateFaker();
+			AccelerateFaker();
+		}
+
 		// 信息
 		NSProcessInfo *processInfo = NSProcessInfo.processInfo;
 		NSString *processName = processInfo.processName;
-		//NSArray *arguments = processInfo.arguments;
-		//NSLog(@"Process(%@) ARGS(%@) UID(%d)", processName, arguments, geteuid());
+		NSArray *arguments = processInfo.arguments;
+		_Log(@"Process(%@) ARGS(%@) UID(%d) MSHookMessageEx(%p)", processName, arguments, geteuid(), _MSHookMessageEx);
+
+		//
 		if ([processName isEqualToString:@"MicroMessenger"])
 		{
-			// 初始化函数指针
-			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
-			_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
-
 			//_HOOKMSG(SettingAboutMMViewController_ShowWhatsNew, SettingAboutMMViewController, ShowWhatsNew);
 			_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
 			_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
@@ -252,14 +287,14 @@ int main()
 			_HOOKMSG(FindFriendEntryViewController_viewDidLoad, FindFriendEntryViewController, viewDidLoad);
 
 			_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
-//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoEntrance, NewYearShakeMgr, shouldShowFamilyPhotoEntrance);
-//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareEntrance);
-//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareTimeLineEntrance);
+			//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoEntrance, NewYearShakeMgr, shouldShowFamilyPhotoEntrance);
+			//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareEntrance);
+			//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareTimeLineEntrance);
 
-//			_HOOKMSG(NewYearShakeMgr_getRespType, NewYearShakeMgr, getRespType);
-//
-//			_HOOKMSG(NewYearShakeResponse_type, NewYearShakeResponse, type);
-//			_HOOKMSG(NewYearShakeResponse_flag, NewYearShakeResponse, flag);
+			//			_HOOKMSG(NewYearShakeMgr_getRespType, NewYearShakeMgr, getRespType);
+			//
+			//			_HOOKMSG(NewYearShakeResponse_type, NewYearShakeResponse, type);
+			//			_HOOKMSG(NewYearShakeResponse_flag, NewYearShakeResponse, flag);
 
 			_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
 
@@ -267,6 +302,13 @@ int main()
 
 			_HOOKMSG(NewYearShakeViewController_viewDidLoad, NewYearShakeViewController, viewDidLoad);
 		}
+		else if ([processName isEqualToString:@"Portal"])
+		{
+			extern void PortalFaker();
+			PortalFaker();
+		}
 	}
 	return 0;
 }
+
+

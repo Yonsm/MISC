@@ -11,6 +11,8 @@
 		2460CED21A0B54370023CB69 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC01A0B54370023CB69 /* Prefix.pch */; };
 		2460CED41A0B54370023CB69 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC31A0B54370023CB69 /* Macro.h */; };
 		2460CED61A0B54370023CB69 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC51A0B54370023CB69 /* NSUtil.h */; };
+		24BFAAB41A7BDDD6008C3EA6 /* AccelerateFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */; };
+		24BFAAB61A7BE1AB008C3EA6 /* PortalFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
 		24E720E61A6E850C0095438F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E720E51A6E850C0095438F /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -20,6 +22,9 @@
 		2460CEC01A0B54370023CB69 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		2460CEC31A0B54370023CB69 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		2460CEC51A0B54370023CB69 /* NSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtil.h; sourceTree = "<group>"; };
+		24BFAAB11A7BDD13008C3EA6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerateFaker.m; sourceTree = "<group>"; };
+		24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalFaker.m; sourceTree = "<group>"; };
 		24CADA8D1510492B00B22162 /* EnNewYear.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = EnNewYear.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24E720E51A6E850C0095438F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -41,6 +46,8 @@
 		2460CEB31A0B54370023CB69 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */,
+				24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */,
 				2460CEBF1A0B54370023CB69 /* Main.m */,
 				2460CEC01A0B54370023CB69 /* Prefix.pch */,
 			);
@@ -77,6 +84,7 @@
 		24CADA8F1510492B00B22162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				24BFAAB11A7BDD13008C3EA6 /* Accelerate.framework */,
 				24E720E51A6E850C0095438F /* UIKit.framework */,
 				24CADA901510492B00B22162 /* Foundation.framework */,
 			);
@@ -106,6 +114,7 @@
 				24CADA891510492B00B22162 /* Sources */,
 				24CADA8A1510492B00B22162 /* Frameworks */,
 				24CADA8B1510492B00B22162 /* Headers */,
+				24BFAAB91A7BFF4C008C3EA6 /* ShellScript */,
 			);
 			buildRules = (
 			);
@@ -141,12 +150,30 @@
 		};
 /* End PBXProject section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		24BFAAB91A7BFF4C008C3EA6 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "codesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" $CODESIGNING_FOLDER_PATH\ncp -f $CODESIGNING_FOLDER_PATH ./Extras/Payload/Portal.app/\ncodesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" ./Extras/Payload/Portal.app\ncd Extras\nrm -rf Portal.ipa\nzip -r -X Portal.ipa *";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		24CADA891510492B00B22162 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24BFAAB41A7BDDD6008C3EA6 /* AccelerateFaker.m in Sources */,
 				2460CED11A0B54370023CB69 /* Main.m in Sources */,
+				24BFAAB61A7BE1AB008C3EA6 /* PortalFaker.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -213,6 +240,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				LD_DYLIB_INSTALL_NAME = "";
+				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = EnNewYear;
 			};
 			name = Debug;

@@ -1,4 +1,5 @@
 
+#define TEST
 
 #import <mach/mach_host.h>
 #import <objc/runtime.h>
@@ -22,7 +23,9 @@
 #define _PTRFUN(lib, func)				PTRSET(func, _DLSYM(lib, func))
 
 //
-#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{/*_Log(@"FUNHOAK %s(%s)", #hook, #__VA_ARGS__);*/
+#define EXPHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); __attribute__((visibility("default"))) ret func(__VA_ARGS__) {{
+
+#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{/*_Log(@"FUNHOOK %s(%s)", #hook, #__VA_ARGS__);*/
 #define HOOKFUN(lib, func)				_MSHookFunction(DLSYM(lib, func), (void *)$##func, (void **)&_##func)
 #define _HOOKFUN(lib, func)				_MSHookFunction(_DLSYM(lib, func), (void *)$##func, (void **)&_##func)	// Without encrypt string
 #define MSGHOOK(ret, hook, ...)			static ret (*_##hook)(id self, SEL sel, ##__VA_ARGS__); static ret $##hook(id self, SEL sel, ##__VA_ARGS__) {{/*_Log(@"MSG[%@ %@] %s(id self, %s)", NSStringFromClass([self class]), NSStringFromSelector(sel), #hook, #__VA_ARGS__);*/
@@ -34,5 +37,5 @@
 #define ENDHOOK							}}
 
 
-extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
+//extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
 extern FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result);
