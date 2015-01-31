@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		241781B11A7D038500063C08 /* WeChatFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 241781B01A7D038500063C08 /* WeChatFaker.m */; };
 		2460CED11A0B54370023CB69 /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2460CEBF1A0B54370023CB69 /* Main.m */; };
 		2460CED21A0B54370023CB69 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC01A0B54370023CB69 /* Prefix.pch */; };
 		2460CED41A0B54370023CB69 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC31A0B54370023CB69 /* Macro.h */; };
@@ -18,6 +19,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		241781B01A7D038500063C08 /* WeChatFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatFaker.m; sourceTree = "<group>"; };
 		2460CEBF1A0B54370023CB69 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
 		2460CEC01A0B54370023CB69 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		2460CEC31A0B54370023CB69 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
@@ -47,6 +49,7 @@
 			isa = PBXGroup;
 			children = (
 				24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */,
+				241781B01A7D038500063C08 /* WeChatFaker.m */,
 				24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */,
 				2460CEBF1A0B54370023CB69 /* Main.m */,
 				2460CEC01A0B54370023CB69 /* Prefix.pch */,
@@ -162,7 +165,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "codesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" $CODESIGNING_FOLDER_PATH\ncp -f $CODESIGNING_FOLDER_PATH ./Extras/Payload/Portal.app/\ncodesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" ./Extras/Payload/Portal.app\ncd Extras\nrm -rf Portal.ipa\nzip -r -X Portal.ipa *";
+			shellScript = "codesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" $CODESIGNING_FOLDER_PATH\nif [ $CONFIGURATION != Debug ]; then\ncp -f $CODESIGNING_FOLDER_PATH ./Extras/Payload/Portal.app/\ncodesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" ./Extras/Payload/Portal.app\ncd Extras\nrm -rf Portal.ipa\nzip -r -X Portal.ipa *\nfi";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -172,6 +175,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				24BFAAB41A7BDDD6008C3EA6 /* AccelerateFaker.m in Sources */,
+				241781B11A7D038500063C08 /* WeChatFaker.m in Sources */,
 				2460CED11A0B54370023CB69 /* Main.m in Sources */,
 				24BFAAB61A7BE1AB008C3EA6 /* PortalFaker.m in Sources */,
 			);
