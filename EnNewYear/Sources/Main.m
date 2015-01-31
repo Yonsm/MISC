@@ -46,8 +46,7 @@ int main()
 		// 信息
 		NSProcessInfo *processInfo = NSProcessInfo.processInfo;
 		NSString *processName = processInfo.processName;
-		NSArray *arguments = processInfo.arguments;
-		_Log(@"Process(%@) ARGS(%@) UID(%d) MSHookMessageEx(%p)", processName, arguments, geteuid(), _MSHookMessageEx);
+		_Log(@"Process(%@) ARGS(%@) UID(%d) MSHookMessageEx(%p)", processName, processInfo.arguments, geteuid(), _MSHookMessageEx);
 
 		//
 #ifdef _WECHAT

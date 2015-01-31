@@ -124,6 +124,7 @@ MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 
 
 //
+#ifdef TEST
 MSGHOOK(BOOL, NewYearSweetTimeViewController_bNeedMoreFun)
 {
 	_Log(@"NewYearSweetTimeViewController_bNeedMoreFun:%d", _NewYearSweetTimeViewController_bNeedMoreFun(self, sel));
@@ -223,6 +224,7 @@ MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned
 	_NewYearShakeViewController_onNewYearShake_errCode(self, sel, a3, a4);
 	//[self showshowShakeFamilyPhoto]
 } ENDHOOK
+#endif
 
 //
 void WeChatFaker()
@@ -232,14 +234,16 @@ void WeChatFaker()
 
 	_HOOKMSG(NewYearShakeViewController_viewDidLoad, NewYearShakeViewController, viewDidLoad);
 
-	//_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
-	//_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
-	//_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
-	//_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
+#ifdef TEST
+	_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
+	_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
+	_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
+	_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
 
-	//_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
-	//_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
-	//_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
+	_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
+	_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
+	_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
+#endif
 	
 	_LogLine();
 }
