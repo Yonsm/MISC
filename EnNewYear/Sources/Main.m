@@ -8,21 +8,15 @@ void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP *result)
 	(*(result) = method_setImplementation(class_getInstanceMethod((_class), (sel)), (imp)));
 }
 
+//
+#ifdef TEST
+MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)
+{
+	_Log(@"UIApplication_openURL: %@", URL);
+	return _UIApplication_openURL(self, sel, URL);
 
-//
-//MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)
-//{
-//	_Log(@"UIApplication_openURL: %@", URL);
-//	return _UIApplication_openURL(self, sel, URL);
-//
-//} ENDHOOK
-//
-////
-//MSGHOOK(BOOL, UIApplication_canOpenURL, NSURL *URL)
-//{
-//	_Log(@"UIApplication_canOpenURL: %@", URL);
-//	return _UIApplication_canOpenURL(self, sel, URL);
-//} ENDHOOK
+} ENDHOOK
+#endif
 
 //
 int main()
@@ -67,14 +61,16 @@ int main()
 #ifdef _PORTAL
 		if ([processName isEqualToString:@"Portal"])
 		{
-			//_HOOKMSG(UIApplication_openURL, UIApplication, openURL:);
-			//_HOOKMSG(UIApplication_canOpenURL, UIApplication, canOpenURL:);
-
 			_LogLine();
 			extern void PortalFaker();
 			PortalFaker();
 		}
 #endif
+
+#ifdef TEST
+		_HOOKMSG(UIApplication_openURL, UIApplication, openURL:);
+#endif
+
 	}
 	return 0;
 }
