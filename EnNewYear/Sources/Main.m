@@ -8,6 +8,22 @@ void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP *result)
 	(*(result) = method_setImplementation(class_getInstanceMethod((_class), (sel)), (imp)));
 }
 
+
+//
+//MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)
+//{
+//	_Log(@"UIApplication_openURL: %@", URL);
+//	return _UIApplication_openURL(self, sel, URL);
+//
+//} ENDHOOK
+//
+////
+//MSGHOOK(BOOL, UIApplication_canOpenURL, NSURL *URL)
+//{
+//	_Log(@"UIApplication_canOpenURL: %@", URL);
+//	return _UIApplication_canOpenURL(self, sel, URL);
+//} ENDHOOK
+
 //
 int main()
 {
@@ -18,6 +34,7 @@ int main()
 		// 初始化函数指针
 		//_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
 		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
+#ifdef _ACCELERATE
 		if (!_MSHookMessageEx)
 		{
 			_MSHookMessageEx = &MSHookMessageEx;	// 如果不需要 MSHookFunction，可以不用引入 CydiaSubstrate
@@ -30,6 +47,7 @@ int main()
 			AccelerateFaker();
 			_LogLine();
 		}
+#endif
 
 		// 信息
 		NSProcessInfo *processInfo = NSProcessInfo.processInfo;
@@ -38,18 +56,25 @@ int main()
 		_Log(@"Process(%@) ARGS(%@) UID(%d) MSHookMessageEx(%p)", processName, arguments, geteuid(), _MSHookMessageEx);
 
 		//
+#ifdef _WECHAT
 		if ([processName isEqualToString:@"MicroMessenger"])
 		{
 			_LogLine();
 			extern void WeChatFaker();
 			WeChatFaker();
 		}
-		else if ([processName isEqualToString:@"Portal"])
+#endif
+#ifdef _PORTAL
+		if ([processName isEqualToString:@"Portal"])
 		{
+			//_HOOKMSG(UIApplication_openURL, UIApplication, openURL:);
+			//_HOOKMSG(UIApplication_canOpenURL, UIApplication, canOpenURL:);
+
 			_LogLine();
 			extern void PortalFaker();
 			PortalFaker();
 		}
+#endif
 	}
 	return 0;
 }

@@ -1,4 +1,6 @@
 
+#ifdef _WECHAT
+
 //
 MSGHOOK(void, FindFriendEntryViewController_viewDidLoad)
 {
@@ -18,7 +20,7 @@ MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 } ENDHOOK
 
 //
-@interface UIViewController (NewYearShakeViewController)
+@protocol NewYearShakeViewController
 - (id)initWithSponsorResID:(unsigned int)a1 countDown:(int)a2;
 - (void)showShakeFamilyPhoto:(BOOL)flag;
 - (void)showShakeFriend:(id)a1 Fee:(unsigned int)a2;
@@ -32,81 +34,92 @@ MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 - (void)Report;
 @end
 
-//
-@implementation UIViewController (NewYearShakeViewController)
-
-//
-- (void)NewYearShakeViewController_more:(UIBarButtonItem *)sender
+@interface NewYearActionSheet : UIActionSheet <UIActionSheetDelegate>
+@property(nonatomic,weak) id<NewYearShakeViewController> controller;
+@end
+@implementation NewYearActionSheet
+- (id)initWithController:(id)controller
 {
-	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"新春功能，请随意"
-													   delegate:(id<UIActionSheetDelegate>)self
-											  cancelButtonTitle:@"取消"
-										 destructiveButtonTitle:nil
-											  otherButtonTitles:
-							@"功能一",
-							@"功能二",
-							@"功能三",
-							@"功能四",
-							@"功能五",
-							@"功能六",
-							@"功能七",
-							@"功能八",
-							@"功能九",
-							@"功能十",
-							@"功能零",
-							nil];
-	[sheet showFromBarButtonItem:sender animated:YES];
+	self = [super initWithTitle:@"新春功能，请随意"
+					   delegate:(id<UIActionSheetDelegate>)self
+			  cancelButtonTitle:@"取消"
+		 destructiveButtonTitle:nil
+			  otherButtonTitles:
+			@"功能一",
+			@"功能二",
+			@"功能三",
+			@"功能四",
+			@"功能五",
+			@"功能六",
+			@"功能七",
+			@"功能八",
+			@"功能九",
+			@"功能十",
+			@"功能零",
+			nil];
+	self.controller = controller;
+	return self;
 }
-
 //
 - (void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex
 {
 	switch (buttonIndex)
 	{
 		case 0:
-			[self showShakeFamilyPhoto:YES];
+			[_controller showShakeFamilyPhoto:YES];
 			break;
 
 		case 1:
-			[self showShakeFriend:nil Fee:99];
+			[_controller showShakeFriend:nil Fee:99];
 			break;
 
 		case 2:
-			[self showShowList:nil CurShowID:0];
+			[_controller showShowList:nil CurShowID:0];
 			break;
 		case 3:
-			[self showShowList:nil CurShowID:1];
+			[_controller showShowList:nil CurShowID:1];
 			break;
 		case 4:
-			[self ShowWebWithResUrl:@"http://m.163.com" Type:0];
+			[_controller ShowWebWithResUrl:@"http://m.163.com" Type:0];
 			break;
 
 		case 5:
-			[self showPostCard];
+			[_controller showPostCard];
 			break;
 
 		case 6:
-			[self showNoHongBao:1];
+			[_controller showNoHongBao:1];
 			break;
 
 		case 7:
-			[self showErr];
+			[_controller showErr];
 			break;
 
 		case 8:
-			[self showShakeFamilyPhoto:NO];
+			[_controller showShakeFamilyPhoto:NO];
 			break;
 
 		case 9:
-			[self ShowSight];
+			[_controller ShowSight];
 			break;
 
 		case 10:
-			[self Report];
+			[_controller Report];
 			break;
 	}
 }
 
+@end
+
+//
+@implementation UIViewController (NewYearShakeViewController)
+
+//
+- (void)NewYearShakeViewController_more:(UIBarButtonItem *)sender
+{
+	UIActionSheet *sheet = [[NewYearActionSheet alloc] initWithController:self];
+	[sheet showFromBarButtonItem:sender animated:YES];
+}
 @end
 
 
@@ -227,8 +240,8 @@ void WeChatFaker()
 	//_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
 	//_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
 	//_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
-
+	
 	_LogLine();
 }
 
-
+#endif

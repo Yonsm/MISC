@@ -1,4 +1,5 @@
 
+#ifdef _ACCELERATE
 #import <Accelerate/Accelerate.h>
 
 //
@@ -80,3 +81,4 @@ void AccelerateFaker()
 	_LogLine();
 }
 
+#endif
