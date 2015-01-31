@@ -256,13 +256,11 @@ int main()
 		// 初始化函数指针
 		//_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookFunction);
 		_PTRFUN(/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate, MSHookMessageEx);
-		if (!MSHookMessageEx)
+		if (!_MSHookMessageEx)
 		{
-			_MSHookMessageEx = MSHookMessageEx;	// Fall back in unjailbreak mode
+			_MSHookMessageEx = &MSHookMessageEx;	// 如果不需要 MSHookFunction，可以不用引入 CydiaSubstrate
 
-			//dlopen("@executable_path/CydiaSubstrate", RTLD_LAZY);
-			//NSLog(@"Error: %s", dlerror());
-
+			// TODO: Crash
 			//_PTRFUN(@executable_path/CydiaSubstrate, MSHookFunction);
 			//_PTRFUN(@executable_path/CydiaSubstrate, MSHookMessageEx);
 

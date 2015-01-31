@@ -1,6 +1,7 @@
 
 #import <Accelerate/Accelerate.h>
 
+//
 EXPHOOK(void, vDSP_dotpr,
 		 const float *__vDSP_A,
 		 vDSP_Stride  __vDSP_IA,
@@ -18,19 +19,21 @@ EXPHOOK(void, vDSP_dotpr,
 					   __vDSP_N);
 } ENDHOOK
 
+//
 EXPHOOK(vImage_Error, vImageBoxConvolve_ARGB8888, const vImage_Buffer *src, const vImage_Buffer *dest, void *tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y, uint32_t kernel_height, uint32_t kernel_width, Pixel_8888 backgroundColor, vImage_Flags flags )
 {
 	_LogLine();
 	return _vImageBoxConvolve_ARGB8888(src, dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y, kernel_height, kernel_width, backgroundColor, flags );
 } ENDHOOK
 
-
+//
 EXPHOOK(vImage_Error, vImageConvolve_Planar8, const vImage_Buffer *src, const vImage_Buffer *dest, void *tempBuffer, vImagePixelCount srcOffsetToROI_X, vImagePixelCount srcOffsetToROI_Y,  const int16_t *kernel, uint32_t kernel_height, uint32_t kernel_width, int32_t divisor, Pixel_8 backgroundColor, vImage_Flags flags )
 {
 	_LogLine();
 	return _vImageConvolve_Planar8(src, dest, tempBuffer, srcOffsetToROI_X, srcOffsetToROI_Y,  kernel, kernel_height, kernel_width, divisor, backgroundColor, flags );
 } ENDHOOK
 
+//
 EXPHOOK(vImage_Error, vImageMatrixMultiply_ARGB8888, const vImage_Buffer *src,
 		 const vImage_Buffer *dest,
 		 const int16_t	matrix[4*4],
@@ -50,12 +53,14 @@ EXPHOOK(vImage_Error, vImageMatrixMultiply_ARGB8888, const vImage_Buffer *src,
 
 } ENDHOOK
 
+//
 EXPHOOK(vImage_Error, vImageRotate90_Planar8, const vImage_Buffer *src, const vImage_Buffer *dest, uint8_t rotationConstant, Pixel_8 backColor, vImage_Flags flags )
 {
 	_LogLine();
 	return _vImageRotate90_Planar8(src, dest, rotationConstant, backColor, flags );
 } ENDHOOK
 
+//
 EXPHOOK(vImage_Error, vImageScale_Planar8, const vImage_Buffer *src, const vImage_Buffer *dest, void *tempBuffer, vImage_Flags flags )
 {
 	_LogLine();
