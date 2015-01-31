@@ -14,27 +14,23 @@
 #endif
 
 //
-#define DLSYM(lib, func)				dlsym(dlopen(k##lib.UTF8String, RTLD_LAZY), k##func.UTF8String)
-#define _DLSYM(lib, func)				dlsym(dlopen(#lib, RTLD_LAZY), #func)	// Without encrypt string
+#define _DLSYM(lib, func)				dlsym(dlopen(#lib, RTLD_LAZY), #func)
 
 #define FUNPTR(ret, func, ...)			ret (*_##func)(__VA_ARGS__)
 #define PTRSET(func, val)				*((void **)&_##func) = val
-#define PTRFUN(lib, func)				PTRSET(func, DLSYM(lib, func))
 #define _PTRFUN(lib, func)				PTRSET(func, _DLSYM(lib, func))
 
 //
 #define EXPHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); __attribute__((visibility("default"))) ret func(__VA_ARGS__) {{
-
-#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{/*_Log(@"FUNHOOK %s(%s)", #hook, #__VA_ARGS__);*/
-#define HOOKFUN(lib, func)				_MSHookFunction(DLSYM(lib, func), (void *)$##func, (void **)&_##func)
-#define _HOOKFUN(lib, func)				_MSHookFunction(_DLSYM(lib, func), (void *)$##func, (void **)&_##func)	// Without encrypt string
-#define MSGHOOK(ret, hook, ...)			static ret (*_##hook)(id self, SEL sel, ##__VA_ARGS__); static ret $##hook(id self, SEL sel, ##__VA_ARGS__) {{/*_Log(@"MSG[%@ %@] %s(id self, %s)", NSStringFromClass([self class]), NSStringFromSelector(sel), #hook, #__VA_ARGS__);*/
-#define HOOKMSG(hook, cls, sel)			_MSHookMessageEx(NSClassFromString(k##cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-#define _HOOKMSG(hook, cls, sel)		_MSHookMessageEx(NSClassFromString(@#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)	// Without encrypt string
-#define HOOKCLS(hook, cls, sel)			_MSHookMessageEx(objc_getMetaClass([k##cls UTF8String]), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-#define _HOOKCLS(hook, cls, sel)		_MSHookMessageEx(objc_getMetaClass(#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)	// Without encrypt string
-
+#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{
+#define MSGHOOK(ret, hook, ...)			static ret (*_##hook)(id self, SEL sel, ##__VA_ARGS__); static ret $##hook(id self, SEL sel, ##__VA_ARGS__) {{
 #define ENDHOOK							}}
+
+//
+#define _HOOKFUN(lib, func)				_MSHookFunction(_DLSYM(lib, func), (void *)$##func, (void **)&_##func)
+#define _HOOKMSG(hook, cls, sel)		_MSHookMessageEx(NSClassFromString(@#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
+#define _HOOKCLS(hook, cls, sel)		_MSHookMessageEx(objc_getMetaClass(#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
+
 
 
 //extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
