@@ -1,7 +1,7 @@
 
 #define TEST
 #define _WECHAT
-#define _PORTAL
+//#define _PORTAL
 #define _ACCELERATE
 
 #import <mach/mach_host.h>
