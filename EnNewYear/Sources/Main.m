@@ -28,6 +28,7 @@ int main()
 
 			extern void AccelerateFaker();
 			AccelerateFaker();
+			_LogLine();
 		}
 
 		// 信息
@@ -39,11 +40,13 @@ int main()
 		//
 		if ([processName isEqualToString:@"MicroMessenger"])
 		{
+			_LogLine();
 			extern void WeChatFaker();
-			void WeChatFaker();
+			WeChatFaker();
 		}
 		else if ([processName isEqualToString:@"Portal"])
 		{
+			_LogLine();
 			extern void PortalFaker();
 			PortalFaker();
 		}

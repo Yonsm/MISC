@@ -48,11 +48,11 @@
 		2460CEB31A0B54370023CB69 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				2460CEBF1A0B54370023CB69 /* Main.m */,
+				2460CEC01A0B54370023CB69 /* Prefix.pch */,
 				24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */,
 				241781B01A7D038500063C08 /* WeChatFaker.m */,
 				24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */,
-				2460CEBF1A0B54370023CB69 /* Main.m */,
-				2460CEC01A0B54370023CB69 /* Prefix.pch */,
 			);
 			path = Sources;
 			sourceTree = "<group>";

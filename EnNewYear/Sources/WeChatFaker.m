@@ -2,124 +2,24 @@
 //
 MSGHOOK(void, FindFriendEntryViewController_viewDidLoad)
 {
-	NSLog(@"FindFriendEntryViewController_viewDidLoad:%@", self);
+	_Log(@"FindFriendEntryViewController_viewDidLoad:%@", self);
 	_FindFriendEntryViewController_viewDidLoad(self, sel);
 
 	[self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"春摇" style:UIBarButtonItemStylePlain target:self action:@selector(openNewYearShake)];
 } ENDHOOK
 
 //
-//MSGHOOK(void, SettingAboutMMViewController_ShowWhatsNew)
-//{
-//	_LineLog();
-//	id controller = [[NSClassFromString(@"NewYearShakeViewController") alloc] init];
-//	[[self navigationController] pushViewController:controller animated:YES];
-//	_LineLog();
-//} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearSweetTimeViewController_bNeedMoreFun)
+MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 {
-	NSLog(@"NewYearSweetTimeViewController_bNeedMoreFun:%d", _NewYearSweetTimeViewController_bNeedMoreFun(self, sel));
-	return YES;
+	_Log(@"NewYearShakeViewController_viewDidLoad:%@", self);
+	_NewYearShakeViewController_viewDidLoad(self, sel);
+
+	[self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"功能" style:UIBarButtonItemStylePlain target:self action:@selector(NewYearShakeViewController_more:)];
 } ENDHOOK
 
 //
-MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowHongBaoEntrance)
-{
-	NSLog(@"NewYearCtrlMgr_shouldShowHongBaoEntrance:%d", _NewYearCtrlMgr_shouldShowHongBaoEntrance(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShake)
-{
-	NSLog(@"NewYearShakeMgr_shouldShake:%d", _NewYearShakeMgr_shouldShake(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance)
-{
-	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoEntrance)
-{
-	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoEntrance(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance)
-{
-	NSLog(@"NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowRedDot)
-{
-	NSLog(@"NewYearCtrlMgr_shouldShowRedDot:%d", _NewYearCtrlMgr_shouldShowRedDot(self, sel));
-	return YES;
-} ENDHOOK
-
-//
-MSGHOOK(id, NewYearCtrlMgr_getRedDotMsg)
-{
-	NSLog(@"NewYearCtrlMgr_getRedDotMsg:%@", _NewYearCtrlMgr_getRedDotMsg(self, sel));
-	return @"哈哈哈哈，红包开启咯";
-} ENDHOOK
-
-//
-int type = 0;
-MSGHOOK(int, NewYearShakeResponse_type)
-{
-	int ret = _NewYearShakeResponse_type(self, sel);
-	NSLog(@"NewYearShakeResponse_type:%d", ret);
-	//_LogStack();
-	return type++;
-} ENDHOOK
-
-//
-MSGHOOK(int, NewYearShakeResponse_flag)
-{
-	int ret = _NewYearShakeResponse_flag(self, sel);
-	NSLog(@"NewYearShakeResponse_flag:%d", ret);
-	//_LogStack();
-	return ret;
-} ENDHOOK
-
-//
-MSGHOOK(id, NewYearShakeResponse_parseFromData, id a3)
-{
-	id ret = _NewYearShakeResponse_parseFromData(self, sel, a3);
-	NSLog(@"NewYearShakeResponse_parseFromData:%@=>%@", ret, a3);
-	_LogStack();
-	return ret;
-} ENDHOOK
-
-//
-MSGHOOK(unsigned int, NewYearShakeMgr_getRespType)
-{
-	unsigned int ret = _NewYearShakeMgr_getRespType(self, sel);
-	NSLog(@"NewYearShakeMgr_getRespType:%d", ret);
-	_LogStack();
-	return ret;
-} ENDHOOK
-
-//
-MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned int a4)
-{
-	NSLog(@"NewYearShakeViewController_onNewYearShake_errCode:%@->%d", a3, a4);
-	_NewYearShakeViewController_onNewYearShake_errCode(self, sel, a3, a4);
-	//[self showshowShakeFamilyPhoto]
-} ENDHOOK
-
-//
-@protocol NewYearShakeViewControllerProtocol <NSObject>
+@interface UIViewController (NewYearShakeViewController)
+- (id)initWithSponsorResID:(unsigned int)a1 countDown:(int)a2;
 - (void)showShakeFamilyPhoto:(BOOL)flag;
 - (void)showShakeFriend:(id)a1 Fee:(unsigned int)a2;
 - (void)showShowList:(id)a1 CurShowID:(unsigned int)a2;
@@ -130,43 +30,30 @@ MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned
 - (void)showErr;
 - (void)ShowSight;
 - (void)Report;
-- (id)initWithSponsorResID:(unsigned int)a1 countDown:(int)a2;
 @end
 
 //
-@interface MyNewYear : NSObject <UIActionSheetDelegate>
-@property(nonatomic,weak) id<NewYearShakeViewControllerProtocol> controller;
-@end
-
-@implementation MyNewYear
+@implementation UIViewController (NewYearShakeViewController)
 
 //
-- (id)initWithController:(id)controller
-{
-	self = [super init];
-	self.controller = controller;
-	return self;
-}
-
-//
-- (void)show:(id)sender
+- (void)NewYearShakeViewController_more:(UIBarButtonItem *)sender
 {
 	UIActionSheet *sheet = [[UIActionSheet alloc] initWithTitle:@"新春功能，请随意"
-													   delegate:self
+													   delegate:(id<UIActionSheetDelegate>)self
 											  cancelButtonTitle:@"取消"
 										 destructiveButtonTitle:nil
 											  otherButtonTitles:
-							@"showShakeFamilyPhoto(YES)",
-							@"showShakeFriend(Fee)",
-							@"showShowList(0)",
-							@"showShowList(1)",
-							@"ShowWebWithResUrl",
-							@"showPostCard",
-							@"showNoHongBao(0)",
-							@"showNoSvr(YES)",
-							@"showErr",
-							@"ShowSight",
-							@"Report",
+							@"功能一",
+							@"功能二",
+							@"功能三",
+							@"功能四",
+							@"功能五",
+							@"功能六",
+							@"功能七",
+							@"功能八",
+							@"功能九",
+							@"功能十",
+							@"功能零",
 							nil];
 	[sheet showFromBarButtonItem:sender animated:YES];
 }
@@ -177,91 +64,171 @@ MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned
 	switch (buttonIndex)
 	{
 		case 0:
-			[_controller showShakeFamilyPhoto:YES];
+			[self showShakeFamilyPhoto:YES];
 			break;
 
 		case 1:
-			[_controller showShakeFriend:nil Fee:99];
+			[self showShakeFriend:nil Fee:99];
 			break;
 
 		case 2:
-			[_controller showShowList:nil CurShowID:0];
+			[self showShowList:nil CurShowID:0];
 			break;
 		case 3:
-			[_controller showShowList:nil CurShowID:1];
+			[self showShowList:nil CurShowID:1];
 			break;
 		case 4:
-			[_controller ShowWebWithResUrl:@"http://m.163.com" Type:0];
+			[self ShowWebWithResUrl:@"http://m.163.com" Type:0];
 			break;
 
 		case 5:
-			[_controller showPostCard];
+			[self showPostCard];
 			break;
 
 		case 6:
-			[_controller showNoHongBao:1];
+			[self showNoHongBao:1];
 			break;
 
 		case 7:
-			[_controller showErr];
+			[self showErr];
 			break;
 
 		case 8:
-			[_controller showShakeFamilyPhoto:NO];
+			[self showShakeFamilyPhoto:NO];
 			break;
 
 		case 9:
-			[_controller ShowSight];
+			[self ShowSight];
 			break;
 
 		case 10:
-			[_controller Report];
-		{
-			//id vc = [[NSClassFromString(@"WCRedEnvelopesRedEnvelopesHistoryListViewController") alloc] init/*WithSponsorResID:110 countDown:110*/];
-			//[[(UIViewController *)_controller navigationController] pushViewController:vc animated:YES];
-		}
+			[self Report];
 			break;
 	}
 }
 
 @end
 
-//
-MyNewYear *_myNewYear;
-MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
-{
-	NSLog(@"NewYearShakeViewController_viewDidLoad:%@", self);
-	_NewYearShakeViewController_viewDidLoad(self, sel);
 
-	_myNewYear = [[MyNewYear alloc] initWithController:self];
-	[self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"功能" style:UIBarButtonItemStylePlain target:_myNewYear action:@selector(show:)];
+//
+MSGHOOK(BOOL, NewYearSweetTimeViewController_bNeedMoreFun)
+{
+	_Log(@"NewYearSweetTimeViewController_bNeedMoreFun:%d", _NewYearSweetTimeViewController_bNeedMoreFun(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowHongBaoEntrance)
+{
+	_Log(@"NewYearCtrlMgr_shouldShowHongBaoEntrance:%d", _NewYearCtrlMgr_shouldShowHongBaoEntrance(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearShakeMgr_shouldShake)
+{
+	_Log(@"NewYearShakeMgr_shouldShake:%d", _NewYearShakeMgr_shouldShake(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance)
+{
+	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoEntrance)
+{
+	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoEntrance(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance)
+{
+	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowRedDot)
+{
+	_Log(@"NewYearCtrlMgr_shouldShowRedDot:%d", _NewYearCtrlMgr_shouldShowRedDot(self, sel));
+	return YES;
+} ENDHOOK
+
+//
+MSGHOOK(id, NewYearCtrlMgr_getRedDotMsg)
+{
+	_Log(@"NewYearCtrlMgr_getRedDotMsg:%@", _NewYearCtrlMgr_getRedDotMsg(self, sel));
+	return @"羊年春晚摇一摇";
+} ENDHOOK
+
+//
+int type = 0;
+MSGHOOK(int, NewYearShakeResponse_type)
+{
+	int ret = _NewYearShakeResponse_type(self, sel);
+	_Log(@"NewYearShakeResponse_type:%d", ret);
+	//_LogStack();
+	return type++;
+} ENDHOOK
+
+//
+MSGHOOK(int, NewYearShakeResponse_flag)
+{
+	int ret = _NewYearShakeResponse_flag(self, sel);
+	_Log(@"NewYearShakeResponse_flag:%d", ret);
+	//_LogStack();
+	return ret;
+} ENDHOOK
+
+//
+MSGHOOK(id, NewYearShakeResponse_parseFromData, id a3)
+{
+	id ret = _NewYearShakeResponse_parseFromData(self, sel, a3);
+	_Log(@"NewYearShakeResponse_parseFromData:%@=>%@", ret, a3);
+	_LogStack();
+	return ret;
+} ENDHOOK
+
+//
+MSGHOOK(unsigned int, NewYearShakeMgr_getRespType)
+{
+	unsigned int ret = _NewYearShakeMgr_getRespType(self, sel);
+	_Log(@"NewYearShakeMgr_getRespType:%d", ret);
+	_LogStack();
+	return ret;
+} ENDHOOK
+
+//
+MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned int a4)
+{
+	_Log(@"NewYearShakeViewController_onNewYearShake_errCode:%@->%d", a3, a4);
+	_NewYearShakeViewController_onNewYearShake_errCode(self, sel, a3, a4);
+	//[self showshowShakeFamilyPhoto]
 } ENDHOOK
 
 //
 void WeChatFaker()
 {
-	//_HOOKMSG(SettingAboutMMViewController_ShowWhatsNew, SettingAboutMMViewController, ShowWhatsNew);
-	_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
-	_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
-	_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
-	_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
+	_LogLine();
 	_HOOKMSG(FindFriendEntryViewController_viewDidLoad, FindFriendEntryViewController, viewDidLoad);
 
-	_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
-	//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoEntrance, NewYearShakeMgr, shouldShowFamilyPhotoEntrance);
-	//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareEntrance);
-	//			_HOOKMSG(NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance, NewYearShakeMgr, shouldShowFamilyPhotoShareTimeLineEntrance);
-
-	//			_HOOKMSG(NewYearShakeMgr_getRespType, NewYearShakeMgr, getRespType);
-	//
-	//			_HOOKMSG(NewYearShakeResponse_type, NewYearShakeResponse, type);
-	//			_HOOKMSG(NewYearShakeResponse_flag, NewYearShakeResponse, flag);
-
-	_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
-
-	_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
-
 	_HOOKMSG(NewYearShakeViewController_viewDidLoad, NewYearShakeViewController, viewDidLoad);
+
+	//_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
+	//_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
+	//_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
+	//_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
+
+	//_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
+	//_HOOKMSG(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
+	//_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
+
+	_LogLine();
 }
 
 
