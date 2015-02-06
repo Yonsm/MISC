@@ -12,8 +12,10 @@
 		2460CED21A0B54370023CB69 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC01A0B54370023CB69 /* Prefix.pch */; };
 		2460CED41A0B54370023CB69 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC31A0B54370023CB69 /* Macro.h */; };
 		2460CED61A0B54370023CB69 /* NSUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC51A0B54370023CB69 /* NSUtil.h */; };
-		24BFAAB41A7BDDD6008C3EA6 /* AccelerateFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */; };
 		24BFAAB61A7BE1AB008C3EA6 /* PortalFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */; };
+		24C8BBD11A81C5D50056BA40 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24C8BBD01A81C5D50056BA40 /* CoreGraphics.framework */; };
+		24C8BBD31A8224BF0056BA40 /* WeChatShareFaker.m in Sources */ = {isa = PBXBuildFile; fileRef = 24C8BBD21A8224BF0056BA40 /* WeChatShareFaker.m */; };
+		24C8BBD51A8229E70056BA40 /* WeChatShareFaker.h in Sources */ = {isa = PBXBuildFile; fileRef = 24C8BBD41A8229E70056BA40 /* WeChatShareFaker.h */; };
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
 		24E720E61A6E850C0095438F /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24E720E51A6E850C0095438F /* UIKit.framework */; };
 /* End PBXBuildFile section */
@@ -24,9 +26,10 @@
 		2460CEC01A0B54370023CB69 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		2460CEC31A0B54370023CB69 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
 		2460CEC51A0B54370023CB69 /* NSUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NSUtil.h; sourceTree = "<group>"; };
-		24BFAAB11A7BDD13008C3EA6 /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
-		24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AccelerateFaker.m; sourceTree = "<group>"; };
 		24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PortalFaker.m; sourceTree = "<group>"; };
+		24C8BBD01A81C5D50056BA40 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		24C8BBD21A8224BF0056BA40 /* WeChatShareFaker.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WeChatShareFaker.m; sourceTree = "<group>"; };
+		24C8BBD41A8229E70056BA40 /* WeChatShareFaker.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeChatShareFaker.h; sourceTree = "<group>"; };
 		24CADA8D1510492B00B22162 /* EnNewYear.dylib */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.dylib"; includeInIndex = 0; path = EnNewYear.dylib; sourceTree = BUILT_PRODUCTS_DIR; };
 		24CADA901510492B00B22162 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		24E720E51A6E850C0095438F /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
@@ -37,6 +40,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				24C8BBD11A81C5D50056BA40 /* CoreGraphics.framework in Frameworks */,
 				24E720E61A6E850C0095438F /* UIKit.framework in Frameworks */,
 				24CADA911510492B00B22162 /* Foundation.framework in Frameworks */,
 			);
@@ -52,7 +56,8 @@
 				2460CEC01A0B54370023CB69 /* Prefix.pch */,
 				24BFAAB51A7BE1AB008C3EA6 /* PortalFaker.m */,
 				241781B01A7D038500063C08 /* WeChatFaker.m */,
-				24BFAAB31A7BDDD6008C3EA6 /* AccelerateFaker.m */,
+				24C8BBD41A8229E70056BA40 /* WeChatShareFaker.h */,
+				24C8BBD21A8224BF0056BA40 /* WeChatShareFaker.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -87,7 +92,7 @@
 		24CADA8F1510492B00B22162 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
-				24BFAAB11A7BDD13008C3EA6 /* Accelerate.framework */,
+				24C8BBD01A81C5D50056BA40 /* CoreGraphics.framework */,
 				24E720E51A6E850C0095438F /* UIKit.framework */,
 				24CADA901510492B00B22162 /* Foundation.framework */,
 			);
@@ -165,7 +170,7 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
-			shellScript = "codesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" $CODESIGNING_FOLDER_PATH\nif [ $CONFIGURATION != Debug ]; then\ncp -f $CODESIGNING_FOLDER_PATH ./Extras/Payload/Portal.app/\ncodesign -fs \"iPhone Developer: Qian Wu (V569CJEC8A)\" ./Extras/Payload/Portal.app\ncd Extras\nrm -rf Portal.ipa\nzip -r -X Portal.ipa *\nfi";
+			shellScript = "if [ $CONFIGURATION != Debug ]; then\ncp -f $CODESIGNING_FOLDER_PATH ./Release/\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
@@ -174,10 +179,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24BFAAB41A7BDDD6008C3EA6 /* AccelerateFaker.m in Sources */,
 				241781B11A7D038500063C08 /* WeChatFaker.m in Sources */,
 				2460CED11A0B54370023CB69 /* Main.m in Sources */,
 				24BFAAB61A7BE1AB008C3EA6 /* PortalFaker.m in Sources */,
+				24C8BBD31A8224BF0056BA40 /* WeChatShareFaker.m in Sources */,
+				24C8BBD51A8229E70056BA40 /* WeChatShareFaker.h in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -243,6 +249,7 @@
 		24CADA9B1510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				LD_DYLIB_INSTALL_NAME = "";
 				ONLY_ACTIVE_ARCH = NO;
 				PRODUCT_NAME = EnNewYear;
@@ -252,6 +259,7 @@
 		24CADA9C1510492B00B22162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
+				GCC_SYMBOLS_PRIVATE_EXTERN = YES;
 				LD_DYLIB_INSTALL_NAME = "";
 				PRODUCT_NAME = EnNewYear;
 			};
