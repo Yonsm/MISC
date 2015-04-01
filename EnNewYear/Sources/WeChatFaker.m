@@ -326,30 +326,41 @@ MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)
 	return _UIApplication_openURL(self, sel, URL);
 
 } ENDHOOK
+#endif
 
 MSGHOOK(id, UIPasteboard_dataForPasteboardType, id type)
 {
+	_LogLine();
+
 	NSData *ret = _UIPasteboard_dataForPasteboardType(self, sel, type);
-	//if ([ret length] > 10000)
+	if ([ret length])
 	{
-		static int index = 0;
-		BOOL r = [ret writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBGet_%@_%d.plist", type, ++index]) atomically:YES];
-		_Log(@"UIPasteboard_dataForPasteboardType:%@,%d,%d", type, r, (int)[ret length]);
+		//static int index = 0;
+		//BOOL r = [ret writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBGet%@.%d_%@_%d.plist", [self name], [self isPersistent], type, ++index]) atomically:YES];
+		id str = [NSPropertyListSerialization propertyListFromData:ret mutabilityOption:0 format:nil errorDescription:nil];
+		NSLog(@"UIPasteboard(%@.%d)_dataForPasteboardType:%@\n\n%@", [self name], [self isPersistent], type, str ?: [NSString stringWithFormat:@"LEN:%d",(int)[ret length]]);
 	}
 	return ret;
 } ENDHOOK
 MSGHOOK(void, UIPasteboard_setData_forPasteboardType, id data, id type)
 {
+	_LogLine();
+
 	_UIPasteboard_setData_forPasteboardType(self, sel, data, type);
-	//if ([ret length] > 10000)
+	if ([data length])
 	{
-		static int index = 0;
-		BOOL r = [data writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBSet_%@_%d.plist", type, ++index]) atomically:YES];
-		_Log(@"UIPasteboard_setData_forPasteboardType:%@,%d", type, r);
+		//static int index = 0;
+		//BOOL r = [data writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBSet%@.%d_%@_%d.plist", [self name], [self isPersistent], type, ++index]) atomically:YES];
+		id str = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:0 format:nil errorDescription:nil];
+		NSLog(@"UIPasteboard(%@.%d)_setData_forPasteboardType:%@\n\n%@", [self name], [self isPersistent], type, str ?: [NSString stringWithFormat:@"LEN:%d",(int)[data length]]);
 	}
 } ENDHOOK
-#endif
 
+MSGHOOK(void, UIAlertView_show)
+{
+	_LogStack();
+	_UIAlertView_show(self, sel);
+} ENDHOOK
 
 //
 void WeChatFaker()
@@ -360,14 +371,14 @@ void WeChatFaker()
 	_HOOKMSG(NewYearShakeViewController_viewDidLoad, NewYearShakeViewController, viewDidLoad);
 
 #ifdef TEST
-	_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
-	_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
-	_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
-	_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
-
-	_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
-	_HOOKCLS(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
-	_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
+//	_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
+//	_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
+//	_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
+//	_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
+//
+//	_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
+//	_HOOKCLS(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
+//	_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
 
 	//_HOOKCLS(OpenApiMgrHelper_makeFileInternalMessage, AppCommunicate, propertyListForAllAppForiOS7Plus);
 	//_HOOKMSG(OpenApiMgr_doApi_bundleId, SendAppMsgToWCHandler, sendAppMsgToWC:bundleId:withData:);
@@ -376,15 +387,16 @@ void WeChatFaker()
 	//_HOOKMSG(UIViewController_presentViewController_animated_completion, UIViewController, presentViewController:animated:completion:);
 
 	//_HOOKMSG(MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions, MicroMessengerAppDelegate, application:didFinishLaunchingWithOptions:);
-	_HOOKMSG(MicroMessengerAppDelegate_handleOpenURL_bundleID, MicroMessengerAppDelegate, handleOpenURL:bundleID:);
+	//_HOOKMSG(MicroMessengerAppDelegate_handleOpenURL_bundleID, MicroMessengerAppDelegate, handleOpenURL:bundleID:);
 	//_HOOKMSG(MicroMessengerAppDelegate_application_openURL_sourceApplication_annotation, MicroMessengerAppDelegate, application:openURL:sourceApplication:annotation:);
 
 	_HOOKMSG(UIApplication_openURL, UIApplication, openURL:);
-
-	_HOOKMSG(UIPasteboard_dataForPasteboardType, UIPasteboard, dataForPasteboardType:);
+	_LogLine();
+	//_HOOKMSG(UIPasteboard_dataForPasteboardType, UIPasteboard, dataForPasteboardType:);
 	_HOOKMSG(UIPasteboard_setData_forPasteboardType, UIPasteboard, setData:forPasteboardType:);
 #endif
-	
+
+	//_HOOKMSG(UIAlertView_show, UIAlertView, show);
 	_LogLine();
 }
 

@@ -1,7 +1,8 @@
 
-//#define TEST
-//#define _WECHAT
+#define TEST
+#define _WECHAT
 #define _PORTAL
+#define kWeChatShareMakeThumb(image, size) image
 
 #import <mach/mach_host.h>
 #import <objc/runtime.h>

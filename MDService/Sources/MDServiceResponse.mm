@@ -42,7 +42,7 @@ NS_INLINE NSString *MDGenerate(unsigned long long dsid)
 				if (memcmp(p, magic, sizeof(magic) - 1) == 0)
 				{
 					p += 8;
-					NSLog(@"_MDGenerate: %#08X", p - base);
+					NSLog(@"_MDGenerate: %#08X", (int)(p - base));
 					_MDGenerate = (PMDGenerate)(p + 1);
 					break;
 				}
@@ -162,12 +162,12 @@ NS_INLINE NSString *MDGenerate(unsigned long long dsid)
 	CFHTTPMessageSetHeaderFieldValue(
 									 response,
 									 (CFStringRef)@"Content-Length",
-									 (CFStringRef)[NSString stringWithFormat:@"%d", (int)[data length]]);
+									 (__bridge CFStringRef)[NSString stringWithFormat:@"%d", (int)[data length]]);
 	CFDataRef headerData = CFHTTPMessageCopySerializedMessage(response);
 	
 	@try
 	{
-		[fileHandle writeData:(NSData *)headerData];
+		[fileHandle writeData:(__bridge NSData *)headerData];
 		[fileHandle writeData:data];
 	}
 	@catch (NSException *exception)

@@ -36,3 +36,18 @@
 
 extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
 extern FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result);
+
+
+#define _HOOK_PASTE(A, B)						A##B
+#define _HOOK_CONCAT(A, B)						_HOOK_PASTE(A, B)
+#define _HOOK_UNIQUE							_HOOK_CONCAT(_HOOK_, __LINE__)
+#define _HOOK_UNIQUE1(S)						_HOOK_CONCAT(_HOOK_UNIQUE, S)
+
+#define _HOOK_METHOD(RET, CLS, MSG, CLASS, ...)	RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__);\
+												typedef RET (*_HOOK_UNIQUE)(id self, SEL sel, ##__VA_ARGS__);\
+												_HOOK_UNIQUE _##CLS##_##MSG;\
+												void __attribute__((constructor)) _HOOK_UNIQUE1(_INIT)() {_##CLS##_##MSG = (_HOOK_UNIQUE)method_setImplementation(class_getInstanceMethod(CLASS, NSSelectorFromString([@#MSG stringByReplacingOccurrencesOfString:@"_" withString:@":"])), (IMP)$##CLS##_##MSG);}\
+												RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__)
+#define HOOK_CLASS(RET, CLS, MSG, ...)			_HOOK_METHOD(RET, CLS, MSG, objc_getMetaClass(#CLS), ##__VA_ARGS__)
+#define HOOK_INSTANCE(RET, CLS, MSG, ...)		_HOOK_METHOD(RET, CLS, MSG, objc_getClass(#CLS), ##__VA_ARGS__)
+//#define HOOK_FUNCTION

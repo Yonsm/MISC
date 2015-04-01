@@ -11,9 +11,9 @@
 		24CADA911510492B00B22162 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 24CADA901510492B00B22162 /* Foundation.framework */; };
 		24E720F71A6E89170095438F /* FakeCode.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E720E81A6E89170095438F /* FakeCode.h */; };
 		24E720FA1A6E89170095438F /* HTTPResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E720EB1A6E89170095438F /* HTTPResponseHandler.h */; };
-		24E720FB1A6E89170095438F /* HTTPResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E720EC1A6E89170095438F /* HTTPResponseHandler.m */; };
+		24E720FB1A6E89170095438F /* HTTPResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E720EC1A6E89170095438F /* HTTPResponseHandler.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		24E720FC1A6E89170095438F /* HTTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E720ED1A6E89170095438F /* HTTPServer.h */; };
-		24E720FD1A6E89170095438F /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E720EE1A6E89170095438F /* HTTPServer.m */; };
+		24E720FD1A6E89170095438F /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E720EE1A6E89170095438F /* HTTPServer.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		24E720FE1A6E89170095438F /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 24E720EF1A6E89170095438F /* Main.m */; };
 		24E720FF1A6E89170095438F /* MDServiceResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 24E720F01A6E89170095438F /* MDServiceResponse.h */; };
 		24E721001A6E89170095438F /* MDServiceResponse.mm in Sources */ = {isa = PBXBuildFile; fileRef = 24E720F11A6E89170095438F /* MDServiceResponse.mm */; };

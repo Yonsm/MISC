@@ -8,6 +8,20 @@ void MSHookMessageEx(Class _class, SEL sel, IMP imp, IMP *result)
 	*(result) = method_setImplementation(class_getInstanceMethod((_class), (sel)), (imp));
 }
 
+#import "WeChatShareFaker.h"
+
+@interface XXXXX : NSObject
+
+@end
+@implementation XXXXX
+
+-(void)test
+{
+	WeChatShareDirect(@[[UIImage imageNamed:@"Icon"]], 0, kWeChatShareFromExtension);
+}
+
+@end
+
 //
 int main()
 {
@@ -34,11 +48,16 @@ int main()
 
 		//
 #ifdef _WECHAT
-		if ([processName isEqualToString:@"MicroMessenger"])
+		if ([processName isEqualToString:@"MicroMessenger"] || [processName isEqualToString:@"SDKSample"])
 		{
 			_LogLine();
 			extern void WeChatFaker();
 			WeChatFaker();
+
+			if ([processName isEqualToString:@"SDKSample"])
+			{
+				[[[XXXXX alloc] init] performSelector:@selector(test) withObject:nil afterDelay:2];
+			}
 		}
 #endif
 #ifdef _PORTAL

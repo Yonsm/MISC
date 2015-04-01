@@ -122,7 +122,7 @@
 		24CADA841510492B00B22162 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0510;
+				LastUpgradeCheck = 0620;
 			};
 			buildConfigurationList = 24CADA871510492B00B22162 /* Build configuration list for PBXProject "DiSiri" */;
 			compatibilityVersion = "Xcode 3.2";
@@ -156,7 +156,6 @@
 		24CADA981510492B00B22162 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
@@ -189,7 +188,6 @@
 		24CADA991510492B00B22162 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD)";
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
