@@ -1,13 +1,7 @@
 
 #define TEST
 #define _WECHAT
-#define _PORTAL
-#define kWeChatShareMakeThumb(image, size) image
-
-#import <mach/mach_host.h>
-#import <objc/runtime.h>
-#import <sys/stat.h>
-#import <dlfcn.h>
+//#define _PORTAL
 
 #import "Macro.h"
 
@@ -16,25 +10,4 @@
 #import "NSUtil.h"
 #endif
 
-//
-#define _DLSYM(lib, func)				dlsym(dlopen(#lib, RTLD_LAZY), #func)
-
-#define FUNPTR(ret, func, ...)			ret (*_##func)(__VA_ARGS__)
-#define PTRSET(func, val)				*((void **)&_##func) = val
-#define _PTRFUN(lib, func)				PTRSET(func, _DLSYM(lib, func))
-
-//
-#define EXPHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); __attribute__((visibility("default"))) ret func(__VA_ARGS__) {{
-#define FUNHOOK(ret, func, ...)			static ret (*_##func)(__VA_ARGS__); static ret $##func(__VA_ARGS__) {{
-#define MSGHOOK(ret, hook, ...)			static ret (*_##hook)(id self, SEL sel, ##__VA_ARGS__); static ret $##hook(id self, SEL sel, ##__VA_ARGS__) {{
-#define ENDHOOK							}}
-
-//
-#define _HOOKFUN(lib, func)				_MSHookFunction(_DLSYM(lib, func), (void *)$##func, (void **)&_##func)
-#define _HOOKMSG(hook, cls, sel)		_MSHookMessageEx(NSClassFromString(@#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-#define _HOOKCLS(hook, cls, sel)		_MSHookMessageEx(objc_getMetaClass(#cls), @selector(sel), (IMP)$##hook, (IMP *)&_##hook)
-
-
-
-//extern FUNPTR(void, MSHookFunction, void *symbol, void *replace, void **result);
-extern FUNPTR(void, MSHookMessageEx, Class _class, SEL sel, IMP imp, IMP *result);
+#import "HookUtil.h"

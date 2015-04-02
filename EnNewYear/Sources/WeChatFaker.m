@@ -2,22 +2,22 @@
 #ifdef _WECHAT
 
 //
-MSGHOOK(void, FindFriendEntryViewController_viewDidLoad)
+_HOOK_MESSAGE(void, FindFriendEntryViewController, viewDidLoad)
 {
 	_Log(@"FindFriendEntryViewController_viewDidLoad:%@", self);
 	_FindFriendEntryViewController_viewDidLoad(self, sel);
 
 	[self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"春摇" style:UIBarButtonItemStylePlain target:self action:@selector(openNewYearShake)];
-} ENDHOOK
+}
 
 //
-MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
+_HOOK_MESSAGE(void, NewYearShakeViewController, viewDidLoad)
 {
 	_Log(@"NewYearShakeViewController_viewDidLoad:%@", self);
 	_NewYearShakeViewController_viewDidLoad(self, sel);
 
 	[self navigationItem].rightBarButtonItem = [[UIBarButtonItem alloc] initWithTitle:@"功能" style:UIBarButtonItemStylePlain target:self action:@selector(NewYearShakeViewController_more:)];
-} ENDHOOK
+}
 
 //
 @protocol NewYearShakeViewController
@@ -126,134 +126,134 @@ MSGHOOK(void, NewYearShakeViewController_viewDidLoad)
 
 //
 #ifdef TEST
-MSGHOOK(BOOL, NewYearSweetTimeViewController_bNeedMoreFun)
+_HOOK_MESSAGE(BOOL, NewYearSweetTimeViewController, bNeedMoreFun)
 {
 	_Log(@"NewYearSweetTimeViewController_bNeedMoreFun:%d", _NewYearSweetTimeViewController_bNeedMoreFun(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowHongBaoEntrance)
+_HOOK_MESSAGE(BOOL, NewYearCtrlMgr, shouldShowHongBaoEntrance)
 {
 	_Log(@"NewYearCtrlMgr_shouldShowHongBaoEntrance:%d", _NewYearCtrlMgr_shouldShowHongBaoEntrance(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShake)
+_HOOK_MESSAGE(BOOL, NewYearShakeMgr, shouldShake)
 {
 	_Log(@"NewYearShakeMgr_shouldShake:%d", _NewYearShakeMgr_shouldShake(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance)
+_HOOK_MESSAGE(BOOL, NewYearShakeMgr, shouldShowFamilyPhotoShareTimeLineEntrance)
 {
 	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareTimeLineEntrance(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoEntrance)
+_HOOK_MESSAGE(BOOL, NewYearShakeMgr, shouldShowFamilyPhotoEntrance)
 {
 	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoEntrance(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance)
+_HOOK_MESSAGE(BOOL, NewYearShakeMgr, shouldShowFamilyPhotoShareEntrance)
 {
 	_Log(@"NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance:%d", _NewYearShakeMgr_shouldShowFamilyPhotoShareEntrance(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, NewYearCtrlMgr_shouldShowRedDot)
+_HOOK_MESSAGE(BOOL, NewYearCtrlMgr, shouldShowRedDot)
 {
 	_Log(@"NewYearCtrlMgr_shouldShowRedDot:%d", _NewYearCtrlMgr_shouldShowRedDot(self, sel));
 	return YES;
-} ENDHOOK
+}
 
 //
-MSGHOOK(id, NewYearCtrlMgr_getRedDotMsg)
+_HOOK_MESSAGE(id, NewYearCtrlMgr, getRedDotMsg)
 {
 	_Log(@"NewYearCtrlMgr_getRedDotMsg:%@", _NewYearCtrlMgr_getRedDotMsg(self, sel));
 	return @"羊年春晚摇一摇";
-} ENDHOOK
+}
 
 //
 int type = 0;
-MSGHOOK(int, NewYearShakeResponse_type)
+_HOOK_MESSAGE(int, NewYearShakeResponse, type)
 {
 	int ret = _NewYearShakeResponse_type(self, sel);
 	_Log(@"NewYearShakeResponse_type:%d", ret);
 	//_LogStack();
 	return type++;
-} ENDHOOK
+}
 
 //
-MSGHOOK(int, NewYearShakeResponse_flag)
+_HOOK_MESSAGE(int, NewYearShakeResponse, flag)
 {
 	int ret = _NewYearShakeResponse_flag(self, sel);
 	_Log(@"NewYearShakeResponse_flag:%d", ret);
 	//_LogStack();
 	return ret;
-} ENDHOOK
+}
 
 //
-MSGHOOK(id, NewYearShakeResponse_parseFromData, id a3)
+_HOOK_MESSAGE(id, NewYearShakeResponse, parseFromData_, id a3)
 {
-	id ret = _NewYearShakeResponse_parseFromData(self, sel, a3);
+	id ret = _NewYearShakeResponse_parseFromData_(self, sel, a3);
 	_Log(@"NewYearShakeResponse_parseFromData:%@=>%@", ret, a3);
 	_LogStack();
 	return ret;
-} ENDHOOK
+}
 
 //
-MSGHOOK(unsigned int, NewYearShakeMgr_getRespType)
+_HOOK_MESSAGE(unsigned int, NewYearShakeMgr, getRespType)
 {
 	unsigned int ret = _NewYearShakeMgr_getRespType(self, sel);
 	_Log(@"NewYearShakeMgr_getRespType:%d", ret);
 	_LogStack();
 	return ret;
-} ENDHOOK
+}
 
 //
-MSGHOOK(void, NewYearShakeViewController_onNewYearShake_errCode, id a3, unsigned int a4)
+_HOOK_MESSAGE(void, NewYearShakeViewController, onNewYearShake_errCode_, id a3, unsigned int a4)
 {
 	_Log(@"NewYearShakeViewController_onNewYearShake_errCode:%@->%d", a3, a4);
-	_NewYearShakeViewController_onNewYearShake_errCode(self, sel, a3, a4);
+	_NewYearShakeViewController_onNewYearShake_errCode_(self, sel, a3, a4);
 	//[self showshowShakeFamilyPhoto]
-} ENDHOOK
+}
 
 
-MSGHOOK(BOOL, MicroMessengerAppDelegate_handleOpenURL_bundleID, id a3, id a4)
+_HOOK_MESSAGE(BOOL, MicroMessengerAppDelegate, handleOpenURL_bundleID_, id a3, id a4)
 {
 	_Log(@"MicroMessengerAppDelegate_handleOpenURL_bundleID:%@->%@", a3, a4);
-	return _MicroMessengerAppDelegate_handleOpenURL_bundleID(self, sel, a3, a4);
-} ENDHOOK
-MSGHOOK(BOOL, MicroMessengerAppDelegate_application_openURL_sourceApplication_annotation, id a1, id a2, id a3, id a4)
+	return _MicroMessengerAppDelegate_handleOpenURL_bundleID_(self, sel, a3, a4);
+}
+_HOOK_MESSAGE(BOOL, MicroMessengerAppDelegate, application_openURL_sourceApplication_annotation_, id a1, id a2, id a3, id a4)
 {
 	_Log(@"MicroMessengerAppDelegate_handleOpenURL_bundleID:%@->%@->%@", a2, a3, a4);
-	return _MicroMessengerAppDelegate_application_openURL_sourceApplication_annotation(self, sel, a1, a2, a3, a4);
-} ENDHOOK
-MSGHOOK(BOOL, MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions, id a3, id a4)
+	return _MicroMessengerAppDelegate_application_openURL_sourceApplication_annotation_(self, sel, a1, a2, a3, a4);
+}
+_HOOK_MESSAGE(BOOL, MicroMessengerAppDelegate, application_didFinishLaunchingWithOptions_, id a3, id a4)
 {
 	_Log(@"MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions:%@->%@", a3, a4);
-	return _MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions(self, sel, a3, a4);
-} ENDHOOK
-MSGHOOK(void, UIViewController_presentViewController_animated_completion, id a1, BOOL a2, id a3)
+	return _MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions_(self, sel, a3, a4);
+}
+_HOOK_MESSAGE(void, UIViewController, presentViewController_animated_completion_, id a1, BOOL a2, id a3)
 {
 	_Log(@"UIViewController_presentViewController_animated_completion:%d->%@->%@", a2, a3, [a1 viewControllers]);
 
-	return _UIViewController_presentViewController_animated_completion(self, sel, a1, a2, a3);
-} ENDHOOK
-MSGHOOK(id, WCNewCommitViewController_initWithImages_contacts, id a1, id a3)
+	return _UIViewController_presentViewController_animated_completion_(self, sel, a1, a2, a3);
+}
+_HOOK_MESSAGE(id, WCNewCommitViewController, initWithImages_contacts_, id a1, id a3)
 {
 	_Log(@"WCNewCommitViewController_initWithImages_contacts:%@->%@", a3, [a1[0] dataPath]);
 	_LogStack();
-	return _WCNewCommitViewController_initWithImages_contacts(self, sel, a1, a3);
-} ENDHOOK
+	return _WCNewCommitViewController_initWithImages_contacts_(self, sel, a1, a3);
+}
 
 @protocol XXX <NSObject>
 -(id)DataToReq;
@@ -277,7 +277,7 @@ MSGHOOK(id, WCNewCommitViewController_initWithImages_contacts, id a1, id a3)
 -(id)textMessage;
 @end
 
-MSGHOOK(void, OpenApiMgr_doApi_bundleId, id a1, id a2, id a3)
+_HOOK_MESSAGE(void, OpenApiMgr, doApi_bundleId_, id a1, id a2, id a3)
 {
 	_Log(@"OpenApiMgr_doApi_bundleId:%@, %@, %@", a1, a2, a3);
 
@@ -302,102 +302,34 @@ MSGHOOK(void, OpenApiMgr_doApi_bundleId, id a1, id a2, id a3)
 	NSLog(@"%@:%d", @"result", [(id<XXX>)a3 result]);
 
 	//_LogStack();
-	return _OpenApiMgr_doApi_bundleId(self, sel, a1, a2, a3);
-} ENDHOOK
-FUNHOOK(int, open, const char *path, int flag, mode_t mode)
-{
-	_Log(@"HOOK open %s, flag: %x, mode: %o", path, flag, mode);
-	return _open(path, flag, mode);
-} ENDHOOK
+	return _OpenApiMgr_doApi_bundleId_(self, sel, a1, a2, a3);
+}
 
-MSGHOOK(id, OpenApiMgrHelper_makeFileInternalMessage)
+_HOOK_MESSAGE(id, OpenApiMgrHelper, makeFileInternalMessage)
 {
 	_LogStack();
 	id ret = _OpenApiMgrHelper_makeFileInternalMessage(self, sel);
 	_Log(@"OpenApiMgrHelper_makeFileInternalMessage:%@", ret[@"wxfe8929c7097f09cc"][@"urls"]);
 	_LogObj(ret[@"wxfe8929c7097f09cc"][@"command"]);
 	return ret;
-} ENDHOOK
+}
 
 //
-MSGHOOK(BOOL, UIApplication_openURL, NSURL *URL)
+_HOOK_MESSAGE(BOOL, UIApplication, openURL_, NSURL *URL)
 {
 	_Log(@"UIApplication_openURL: %@", URL);
-	return _UIApplication_openURL(self, sel, URL);
+	return _UIApplication_openURL_(self, sel, URL);
 
-} ENDHOOK
+}
 #endif
-
-MSGHOOK(id, UIPasteboard_dataForPasteboardType, id type)
-{
-	_LogLine();
-
-	NSData *ret = _UIPasteboard_dataForPasteboardType(self, sel, type);
-	if ([ret length])
-	{
-		//static int index = 0;
-		//BOOL r = [ret writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBGet%@.%d_%@_%d.plist", [self name], [self isPersistent], type, ++index]) atomically:YES];
-		id str = [NSPropertyListSerialization propertyListFromData:ret mutabilityOption:0 format:nil errorDescription:nil];
-		NSLog(@"UIPasteboard(%@.%d)_dataForPasteboardType:%@\n\n%@", [self name], [self isPersistent], type, str ?: [NSString stringWithFormat:@"LEN:%d",(int)[ret length]]);
-	}
-	return ret;
-} ENDHOOK
-MSGHOOK(void, UIPasteboard_setData_forPasteboardType, id data, id type)
-{
-	_LogLine();
-
-	_UIPasteboard_setData_forPasteboardType(self, sel, data, type);
-	if ([data length])
-	{
-		//static int index = 0;
-		//BOOL r = [data writeToFile:NSDocumentSubPath([NSString stringWithFormat:@"PBSet%@.%d_%@_%d.plist", [self name], [self isPersistent], type, ++index]) atomically:YES];
-		id str = [NSPropertyListSerialization propertyListFromData:data mutabilityOption:0 format:nil errorDescription:nil];
-		NSLog(@"UIPasteboard(%@.%d)_setData_forPasteboardType:%@\n\n%@", [self name], [self isPersistent], type, str ?: [NSString stringWithFormat:@"LEN:%d",(int)[data length]]);
-	}
-} ENDHOOK
-
-MSGHOOK(void, UIAlertView_show)
-{
-	_LogStack();
-	_UIAlertView_show(self, sel);
-} ENDHOOK
 
 //
 void WeChatFaker()
 {
 	_LogLine();
-	_HOOKMSG(FindFriendEntryViewController_viewDidLoad, FindFriendEntryViewController, viewDidLoad);
 
-	_HOOKMSG(NewYearShakeViewController_viewDidLoad, NewYearShakeViewController, viewDidLoad);
-
-#ifdef TEST
-//	_HOOKMSG(NewYearSweetTimeViewController_bNeedMoreFun, NewYearSweetTimeViewController, bNeedMoreFun);
-//	_HOOKMSG(NewYearCtrlMgr_getRedDotMsg, NewYearCtrlMgr, getRedDotMsg);
-//	_HOOKMSG(NewYearCtrlMgr_shouldShowRedDot, NewYearCtrlMgr, shouldShowRedDot);
-//	_HOOKMSG(NewYearCtrlMgr_shouldShowHongBaoEntrance, NewYearCtrlMgr, shouldShowHongBaoEntrance);
-//
-//	_HOOKMSG(NewYearShakeMgr_shouldShake, NewYearShakeMgr, shouldShake);
-//	_HOOKCLS(NewYearShakeResponse_parseFromData, NewYearShakeResponse, parseFromData:);
-//	_HOOKMSG(NewYearShakeViewController_onNewYearShake_errCode, NewYearShakeViewController, onNewYearShake:errCode:);
-
-	//_HOOKCLS(OpenApiMgrHelper_makeFileInternalMessage, AppCommunicate, propertyListForAllAppForiOS7Plus);
-	//_HOOKMSG(OpenApiMgr_doApi_bundleId, SendAppMsgToWCHandler, sendAppMsgToWC:bundleId:withData:);
-
-	//_HOOKMSG(WCNewCommitViewController_initWithImages_contacts, WCNewCommitViewController, initWithImages:contacts:);
-	//_HOOKMSG(UIViewController_presentViewController_animated_completion, UIViewController, presentViewController:animated:completion:);
-
-	//_HOOKMSG(MicroMessengerAppDelegate_application_didFinishLaunchingWithOptions, MicroMessengerAppDelegate, application:didFinishLaunchingWithOptions:);
-	//_HOOKMSG(MicroMessengerAppDelegate_handleOpenURL_bundleID, MicroMessengerAppDelegate, handleOpenURL:bundleID:);
-	//_HOOKMSG(MicroMessengerAppDelegate_application_openURL_sourceApplication_annotation, MicroMessengerAppDelegate, application:openURL:sourceApplication:annotation:);
-
-	_HOOKMSG(UIApplication_openURL, UIApplication, openURL:);
-	_LogLine();
-	//_HOOKMSG(UIPasteboard_dataForPasteboardType, UIPasteboard, dataForPasteboardType:);
-	_HOOKMSG(UIPasteboard_setData_forPasteboardType, UIPasteboard, setData:forPasteboardType:);
-#endif
-
-	//_HOOKMSG(UIAlertView_show, UIAlertView, show);
-	_LogLine();
+	_Init_FindFriendEntryViewController_viewDidLoad();
+	_Init_NewYearShakeViewController_viewDidLoad();
 }
 
 #endif
