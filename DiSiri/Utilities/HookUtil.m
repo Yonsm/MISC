@@ -2,30 +2,30 @@
 #import "HookUtil.h"
 
 //
-void *_HookFunction(void *symbol, void *hook)
+void _HookFunction(const char *lib, const char *fun, void *hook, void **old)
 {
+	void *symbol = dlsym(dlopen(lib, RTLD_LAZY), fun);
+
 	//
 	static void (*_MSHookFunction)(void *symbol, void *hook, void **old) = NULL;
 	if (_MSHookFunction == NULL)
 	{
-		void *lib = dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY);
-		if (lib)
-		{
-			_MSHookFunction = dlsym(lib, "MSHookFunction");
-		}
+		_MSHookFunction = dlsym(dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY), "MSHookFunction");
 	}
 
 	//
-	void *old = NULL;
 	if (_MSHookFunction)
 	{
-		_MSHookFunction(symbol, hook, &old);
+		_MSHookFunction(symbol, hook, old);
 	}
-	return NULL;
+	else
+	{
+		*old = NULL;
+	}
 }
 
 //
-void *_HookMessage(Class cls, const char *msg, void *hook)
+void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 {
 	//
 	char name[1024];
@@ -41,22 +41,16 @@ void *_HookMessage(Class cls, const char *msg, void *hook)
 	static void (*_MSHookMessageEx)(Class cls, SEL sel, void *hook, void **old) = NULL;
 	if (_MSHookMessageEx == nil)
 	{
-		void *lib = dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY);
-		if (lib)
-		{
-			_MSHookMessageEx = dlsym(lib, "MSHookMessageEx");
-		}
+		_MSHookMessageEx = dlsym(dlopen("/Library/Frameworks/CydiaSubstrate.framework/CydiaSubstrate", RTLD_LAZY), "MSHookMessageEx");
 	}
 
 	//
-	void *old = NULL;
 	if (_MSHookMessageEx)
 	{
-		_MSHookMessageEx(cls, sel, hook, &old);
+		_MSHookMessageEx(cls, sel, hook, old);
 	}
 	else
 	{
-		old = method_setImplementation(class_getInstanceMethod(cls, sel), hook);
+		*old = method_setImplementation(class_getInstanceMethod(cls, sel), hook);
 	}
-	return old;
 }

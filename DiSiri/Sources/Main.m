@@ -30,3 +30,9 @@ int main()
 {
 	return 0;
 }
+
+
+HOOK_FUNCTION(void, /usr/lib/a.dylib, open)
+{
+
+}

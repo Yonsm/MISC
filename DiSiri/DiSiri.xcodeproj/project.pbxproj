@@ -54,10 +54,10 @@
 		2460CEC11A0B54370023CB69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				24215BBB1ACD2E8B00BA33B7 /* HookUtil.h */,
-				24215BBC1ACD2E8B00BA33B7 /* HookUtil.m */,
 				2460CEC31A0B54370023CB69 /* Macro.h */,
 				2460CEC51A0B54370023CB69 /* NSUtil.h */,
+				24215BBB1ACD2E8B00BA33B7 /* HookUtil.h */,
+				24215BBC1ACD2E8B00BA33B7 /* HookUtil.m */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
