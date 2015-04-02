@@ -1,8 +1,7 @@
 
 
 //
-#if 0
-HOOK_INSTANCE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
+AUTOHOOK_MESSAGE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
 {
 	_LogStack();
 
@@ -18,21 +17,15 @@ HOOK_INSTANCE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_comp
 
 	return _SBAssistantController_uiPluginWantsActivation_forEvent_completion_(self, sel, arg1, arg2, arg3);
 }
-#endif
-
-
-HOOK_MESSAGE(void, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
-{
-	return _SBAssistantController_uiPluginWantsActivation_forEvent_completion_(self, sel, arg1, arg2, arg3);
-}
 
 int main()
 {
 	return 0;
 }
 
-
-HOOK_FUNCTION(void, /usr/lib/a.dylib, open)
+//
+AUTOHOOK_FUNCTION(void, /usr/lib/a.dylib, open2)
 {
 
 }
+
