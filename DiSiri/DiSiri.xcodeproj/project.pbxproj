@@ -7,8 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		24215BB91ACCE88300BA33B7 /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24215BB71ACCE88300BA33B7 /* HookUtil.h */; };
-		24215BBA1ACCE88300BA33B7 /* HookUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24215BB81ACCE88300BA33B7 /* HookUtil.m */; };
+		24215BBD1ACD2E8B00BA33B7 /* HookUtil.h in Headers */ = {isa = PBXBuildFile; fileRef = 24215BBB1ACD2E8B00BA33B7 /* HookUtil.h */; };
+		24215BBE1ACD2E8B00BA33B7 /* HookUtil.m in Sources */ = {isa = PBXBuildFile; fileRef = 24215BBC1ACD2E8B00BA33B7 /* HookUtil.m */; };
 		2460CED11A0B54370023CB69 /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 2460CEBF1A0B54370023CB69 /* Main.m */; };
 		2460CED21A0B54370023CB69 /* Prefix.pch in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC01A0B54370023CB69 /* Prefix.pch */; };
 		2460CED41A0B54370023CB69 /* Macro.h in Headers */ = {isa = PBXBuildFile; fileRef = 2460CEC31A0B54370023CB69 /* Macro.h */; };
@@ -18,8 +18,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		24215BB71ACCE88300BA33B7 /* HookUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookUtil.h; sourceTree = "<group>"; };
-		24215BB81ACCE88300BA33B7 /* HookUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookUtil.m; sourceTree = "<group>"; };
+		24215BBB1ACD2E8B00BA33B7 /* HookUtil.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HookUtil.h; sourceTree = "<group>"; };
+		24215BBC1ACD2E8B00BA33B7 /* HookUtil.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HookUtil.m; sourceTree = "<group>"; };
 		2460CEBF1A0B54370023CB69 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
 		2460CEC01A0B54370023CB69 /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Prefix.pch; sourceTree = "<group>"; };
 		2460CEC31A0B54370023CB69 /* Macro.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Macro.h; sourceTree = "<group>"; };
@@ -45,8 +45,6 @@
 		2460CEB31A0B54370023CB69 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
-				24215BB71ACCE88300BA33B7 /* HookUtil.h */,
-				24215BB81ACCE88300BA33B7 /* HookUtil.m */,
 				2460CEBF1A0B54370023CB69 /* Main.m */,
 				2460CEC01A0B54370023CB69 /* Prefix.pch */,
 			);
@@ -56,6 +54,8 @@
 		2460CEC11A0B54370023CB69 /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
+				24215BBB1ACD2E8B00BA33B7 /* HookUtil.h */,
+				24215BBC1ACD2E8B00BA33B7 /* HookUtil.m */,
 				2460CEC31A0B54370023CB69 /* Macro.h */,
 				2460CEC51A0B54370023CB69 /* NSUtil.h */,
 			);
@@ -98,8 +98,8 @@
 			files = (
 				2460CED21A0B54370023CB69 /* Prefix.pch in Headers */,
 				2460CED41A0B54370023CB69 /* Macro.h in Headers */,
+				24215BBD1ACD2E8B00BA33B7 /* HookUtil.h in Headers */,
 				2460CED61A0B54370023CB69 /* NSUtil.h in Headers */,
-				24215BB91ACCE88300BA33B7 /* HookUtil.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -153,7 +153,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				24215BBA1ACCE88300BA33B7 /* HookUtil.m in Sources */,
+				24215BBE1ACD2E8B00BA33B7 /* HookUtil.m in Sources */,
 				2460CED11A0B54370023CB69 /* Main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
