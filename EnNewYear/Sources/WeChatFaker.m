@@ -201,7 +201,7 @@ _HOOK_MESSAGE(int, NewYearShakeResponse, flag)
 }
 
 //
-_HOOK_MESSAGE(id, NewYearShakeResponse, parseFromData_, id a3)
+_HOOK_META(id, NewYearShakeResponse, parseFromData_, id a3)
 {
 	id ret = _NewYearShakeResponse_parseFromData_(self, sel, a3);
 	_Log(@"NewYearShakeResponse_parseFromData:%@=>%@", ret, a3);
