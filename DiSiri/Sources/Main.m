@@ -1,7 +1,7 @@
 
 
 //
-AUTOHOOK_MESSAGE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
+HOOK_MESSAGE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
 {
 	_LogStack();
 
@@ -22,10 +22,3 @@ int main()
 {
 	return 0;
 }
-
-//
-AUTOHOOK_FUNCTION(void, /usr/lib/a.dylib, open2)
-{
-
-}
-

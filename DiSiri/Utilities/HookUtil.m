@@ -1,4 +1,5 @@
 
+#import <dlfcn.h>
 #import "HookUtil.h"
 
 //
@@ -34,7 +35,7 @@ void _HookMessage(Class cls, const char *msg, void *hook, void **old)
 	{
 		name[i] = (msg[i] == '_') ? ':' : msg[i];
 	}
-	while (msg[i]);
+	while (msg[i++]);
 	SEL sel = sel_registerName(name);
 
 	//
