@@ -14,7 +14,8 @@
 												RET $##CLS##_##MSG(id self, SEL sel, ##__VA_ARGS__)
 #define HOOK_CLASS(RET, CLS, MSG, ...)			_HOOK_METHOD(RET, CLS, MSG, objc_getMetaClass(#CLS), ##__VA_ARGS__)
 #define HOOK_INSTANCE(RET, CLS, MSG, ...)		_HOOK_METHOD(RET, CLS, MSG, objc_getClass(#CLS), ##__VA_ARGS__)
-//#define HOOK_FUNCTION
+
+#define HOOK_FUNCTION
 
 
 //

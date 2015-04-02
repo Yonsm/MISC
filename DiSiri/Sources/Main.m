@@ -23,6 +23,7 @@ HOOK_INSTANCE(BOOL, SBAssistantController, uiPluginWantsActivation_forEvent_comp
 
 HOOK_INSTANCE(void, SBAssistantController, uiPluginWantsActivation_forEvent_completion_, id arg1, int arg2, id arg3)
 {
+	return _SBAssistantController_uiPluginWantsActivation_forEvent_completion_(self, sel, arg1, arg2, arg3);
 }
 
 int main()
