@@ -1,0 +1,43 @@
+Do people actually bother to read these? I wonder.
+
+To install:
+-----------
+
+  - Dump procexp in your /bin, /sbin, or anywhere in your path.
+
+  - Put the procexp.1 in /usr/share/man/man1. You can then use "man" to read the man page.
+
+  - On iOS, you'll need to fix the terminfo database to get full screen, colors, etc. Read man page for details. 
+    10/17/13: The terminfo file for xterm256-color is prepackaged with this tar. Note it has to be in the "78" 
+    (hex code for 'x') for it to be visible, and you should invoke procexp with TERMINFO=. , i.e.
+
+     # ls ./78
+     xterm-256color
+     # export TERMINFO=.
+     # ./procexp.universal
+     
+        or
+  
+     # TERMINFO=. ./procexp.universal
+
+ 
+     01/19/14: Apparently, the new cydia release of ncurses finally fixed the TERMINFO issue. So you can just grab 
+               the procexp.universal (and the procexp.1, if you want the man)
+
+Notes:
+------
+
+  - WhatsNew contains a changelog ,as well as a peek of upcoming features.
+
+  - Like top(1), for best results this should be setUID root, or run this as root. While running stuff as root is generally bad practice (and I have yet to codesign this..), I assure you that if you download this from newosxbook.com it will NOT have any malware (which static analysis can confirm). At some point I'll make this open source, which will simplify things.
+
+  Things which need root include:
+
+     - CPU statistics
+     - Viewing processes other than those owned by your UID.
+
+
+Feedback:
+---------
+Feedback is REALLY welcome. If you find this tool useful, or not and have comments/bug-reports so I can improve it, please let me know!
+

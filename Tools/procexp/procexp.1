@@ -1,0 +1,72 @@
+.\" Copyright (c) 2012, 2013 Jonathan Levin
+.\" Copy this file to /usr/share/man/man1 to view using "man procexp"
+.\"
+.TH PROCEXP 1 "July 19, 2013" "Jonathan Levin"
+.SH NAME
+procexp \- display and update even more sorted information about processes and threads than top(1) does
+.SH SYNOPSIS
+.B procexp
+# Interactive mode
+
+.B procexp
+.I "<pid> [all|fds|net|threads|tree|regions]"
+# Batch mode 
+  
+
+.SH DESCRIPTION
+The
+.I procexp
+utility is meant as a replacement for Apple's top(1), closer to the version used in Linux, providing far more information with less impact on CPU utilization. It provides full screen (curses) functionality if used with no arguments, and text output (which can be used with grep) if arguments are supplied (q.v. examples)
+
+In interactive mode, you can use the left and right arrow keys to switch sort order by columns. Pressing 'r' will reverse the sort order. Pressing 'c' will toggle color on/off. '/' will enable you to filter by process name. '?' will get you help. Finally, scrolling through the list with the up/down arrow keys will enable you to find a process of your choice, then pressing <enter> will select it to provide many more details. Other keys are supported and functions as your humble author continues developing this tool.
+
+.SH EXAMPLES
+
+.B procexp $$ regions
+- show all file descriptors of PID $$ (your shell) - similar to vmmap
+
+.B procexp all fds
+- show all file descriptors of all processes - similar to lsof
+
+.B procexp all threads
+- show all threads of all processes - similar to stackhot - but with symbolication
+
+.B procexp all 
+- show a snapshot of all processes, all information
+
+
+
+.SH NOTES
+
+ On iOS, in order to use full screen functionality, you need the termcap database (/usr/share/terminfo) from OS X. One way of doing so is to simply copy over (tar and untar) said database. Another (simpler) way is to use the 
+.B TERMINFO
+environment variable, as described in terminfo(5). A quick hack is to just copy over the terminal definition of the one you are using (default - xterm256-color, from /usr/share/terminfo/78/xterm256-color), conveniently supplied for you in the tarball. You can use TERMINFO=. on wherever you unpack the "78" directory in.
+ 
+
+.SH HISTORY
+The 
+.B procexp
+utility first accompanied the author's book, "Mac OS X and iOS Internals - To The Apple's Core".  The tool is provided as one of the free downloads provided for the book, will remain free for (the author's) life, and its latest version can always be obtained at 
+.B http://www.newosxbook.com/.
+.B procexp
+shares no code with any other sources, open or closed, Apple's or otherwise. 
+
+View the accompanying WhatsNew.txt file for a list of completed and future features.
+
+.SH CREDITS
+
+.B Mark Russinovich of sysinternals.com
+for creating the graphic tool of the same name, for Windows, which inspired this one.
+
+.SH BUGS
+
+ - Constantly being updated. Some things which will (eventually) be fixed include nice display of process hierarchy.
+ - regions options only works in CLI mode; Doesn't display PID 0 regions correctly. No mapping inside shared lib cache (will be fixed in upcoming version)
+
+.SH REQUESTS
+
+If you find this useful, an email to counter@newosxbook.com with the subject "procexp" would be appreciated
+
+
+.SH "SEE ALSO"
+top(1)
