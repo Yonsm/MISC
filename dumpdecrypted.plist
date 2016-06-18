@@ -1,0 +1,9 @@
+{
+    Filter =     {
+        Bundles =         (
+            "com.tencent.xin",
+            "com.tencent.xin.sharetimeline",
+            "cn.eclicks.chelun"
+        );
+    };
+}
