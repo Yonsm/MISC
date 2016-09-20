@@ -1,0 +1,16 @@
+
+#define TEST
+#import "Macro.h"
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import "NSUtil.h"
+#endif
+
+#import "HookUtil.h"
+
+
+//
+extern NSDictionary *configDict;
+extern NSString *mockConfigUrl;
+extern UIViewController *vc;
