@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.gn": "python",
+        "*.gni": "python",
+        "functional": "cpp"
+    },
+    "terminal.integrated.env.osx": {
+        "PATH": "/Users/Yonsm/.platformio/penv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Volumes/DATA/Applications/VMware.app/Contents/Public"
+    }
+}
