@@ -1039,6 +1039,11 @@ void ResetFactory(void)
   strcpy_P(SecuritySettings.WifiKey, PSTR(DEFAULT_KEY));
   strcpy_P(SecuritySettings.WifiAPKey, PSTR(DEFAULT_AP_KEY));
   SecuritySettings.Password[0] = 0;
+
+#ifdef DEFAULT_USERNAME
+  strcpy_P(SecuritySettings.ControllerUser[0], DEFAULT_USERNAME);
+  strcpy_P(SecuritySettings.ControllerPassword[0], DEFAULT_PASSWORD);
+#endif
   Settings.Delay           = DEFAULT_DELAY;
   Settings.Pin_i2c_sda     = 4;
   Settings.Pin_i2c_scl     = 5;
@@ -1051,6 +1056,7 @@ void ResetFactory(void)
   Settings.WebLogLevel     = 2;
   Settings.BaudRate        = 115200;
   Settings.MessageDelay = 120000;
+  //Settings.MQTTRetainFlag = true;
   Settings.deepSleep = false;
   Settings.CustomCSS = false;
   Settings.InitSPI = false;
