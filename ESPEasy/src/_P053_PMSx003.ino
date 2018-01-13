@@ -8,13 +8,13 @@
 // togther with a laser, count the amount of particles. These sensors have an integrated microcontroller
 // that counts particles and transmits measurement data over the serial connection.
 
-#ifdef PLUGIN_BUILD_TESTING
+//#ifdef PLUGIN_BUILD_TESTING
 
 #include <SoftwareSerial.h>
 
 #define PLUGIN_053
 #define PLUGIN_ID_053 53
-#define PLUGIN_NAME_053 "Dust Sensor - PMS5003T"
+#define PLUGIN_NAME_053 "Dust - PMS5003T"
 #define PLUGIN_VALUENAME1_053 "PM2.5"
 #define PLUGIN_VALUENAME2_053 "TEMP."
 #define PLUGIN_VALUENAME3_053 "HUM."
@@ -275,4 +275,4 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
   }
   return success;
 }
-#endif // PLUGIN_BUILD_TESTING
+//#endif // PLUGIN_BUILD_TESTING

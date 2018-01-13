@@ -2,11 +2,11 @@
 //########################### Controller Plugin 011: Generic HTTP #######################################
 //#######################################################################################################
 
-#ifdef PLUGIN_BUILD_TESTING
+//#ifdef PLUGIN_BUILD_TESTING
 
 #define CPLUGIN_011
 #define CPLUGIN_ID_011         11
-#define CPLUGIN_NAME_011       "Generic HTTP Advanced [TESTING]"
+#define CPLUGIN_NAME_011       "Generic HTTP Advanced"
 
 #define C011_HTTP_METHOD_MAX_LEN          16
 #define C011_HTTP_URI_MAX_LEN             240
@@ -347,4 +347,4 @@ void ReplaceTokenByValue(String& s, struct EventStruct *event)
 	addLog(LOG_LEVEL_DEBUG_MORE, s);
 }
 
-#endif
+//#endif

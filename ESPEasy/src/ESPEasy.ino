@@ -78,28 +78,36 @@
 // Set default configuration settings if you want (not mandatory)
 // You can always change these during runtime and save to eeprom
 // After loading firmware, issue a 'reset' command to load the defaults.
-
+#include "PrivateConfig.h"
 #define DEFAULT_NAME        "AQI"               // Enter your device friendly name
-#define DEFAULT_SSID        "Router"            // Enter your network SSID
-#define DEFAULT_KEY         "asdfqwer"          // Enter your network WPA key
+#ifndef DEFAULT_SSID
+  #define DEFAULT_SSID      "WiFiSSID"          // Enter your network SSID
+  #define DEFAULT_KEY       "WiFiPassword"      // Enter your network WPA key
+#endif
 #define DEFAULT_DELAY       60                  // Enter your Send delay in seconds
 #define DEFAULT_AP_KEY      "AQIConfig"         // Enter network WPA key for AP (config) mode
 
-#define DEFAULT_HTTP_PORT   8124                // 
+#ifndef DEFAULT_HTTP_PORT
+  #define DEFAULT_HTTP_PORT 80                 // 
+#endif
 #define DEFAULT_USE_STATIC_IP   false           // true or false enabled or disabled set static IP
 #define DEFAULT_IP          "192.168.1.11"      // Enter your IP address
 #define DEFAULT_DNS         "192.168.1.1"       // Enter your DNS
 #define DEFAULT_GW          "192.168.1.1"       // Enter your gateway
 #define DEFAULT_SUBNET      "255.255.255.0"     // Enter your subnet
 
-#define DEFAULT_CONTROLLER   false              // true or false enabled or disabled, set 1st controller defaults
+#define DEFAULT_CONTROLLER   true              // true or false enabled or disabled, set 1st controller defaults
 // using a default template, you also need to set a DEFAULT PROTOCOL to a suitable MQTT protocol !
-#define DEFAULT_PUB         "sensors/espeasy/%sysname%/%tskname%/%valname%" // Enter your pub
-#define DEFAULT_SUB         "sensors/espeasy/%sysname%/#" // Enter your sub
+#define DEFAULT_PUB         "/%sysname%/%tskname%/%valname%" // Enter your pub
+#define DEFAULT_SUB         "/%sysname%/#" // Enter your sub
 #define DEFAULT_SERVER      "192.168.1.10"       // Enter your Server IP address
 #define DEFAULT_PORT        1883                // Enter your Server port value
+#ifndef DEFAULT_USERNAME
+  #define DEFAULT_USERNAME    "mqtt"
+  #define DEFAULT_PASSWORD    "mqtt"
+#endif
 
-#define DEFAULT_PROTOCOL    1                   // Protocol used for controller communications
+#define DEFAULT_PROTOCOL    5                   // Protocol used for controller communications
 //   1 = Domoticz HTTP
 //   2 = Domoticz MQTT
 //   3 = Nodo Telnet
@@ -223,7 +231,7 @@
 #else
   #define DEVICES_MAX                      64
 #endif
-#define TASKS_MAX                          12 // max 12!
+#define TASKS_MAX                           4 // max 12!
 #define CONTROLLER_MAX                      3 // max 4!
 #define NOTIFICATION_MAX                    3 // max 4!
 #define VARS_PER_TASK                       4

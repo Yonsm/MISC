@@ -6,7 +6,7 @@
             "request": "launch",
             "cwd": "${workspaceRoot}",
             "name": "PlatformIO Debugger",
-            "target": "/Volumes/DATA/Sites/ESPEasy/V2/.pioenvs/test_4096/firmware.elf",
+            "target": "/Volumes/DATA/Sites/Misc/ESPEasy/.pioenvs/normal_4096/firmware.elf",
             "gdbpath": "/Users/Yonsm/.platformio/penv/bin/piodebuggdb",
             "autorun": [ "source .pioinit" ]
         }

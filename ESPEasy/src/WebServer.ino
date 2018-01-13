@@ -180,9 +180,9 @@ void getWebPageTemplateDefault(const String& tmplName, String& tmpl)
         "</header>"
         "{{error}}"
         "{{content}}"
-        "<footer>"
+        //"<footer>"
           // "<h6>Powered by www.letscontrolit.com</h6>"
-        "</footer>"
+        //"</footer>"
       "</body></html>"
             );
   }

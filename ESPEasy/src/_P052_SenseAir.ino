@@ -5,7 +5,7 @@
   Plugin originally written by: Daniel Tedenljung info__AT__tedenljungconsulting.com
   Rewritten by: Mikael Trieb mikael__AT__triebconsulting.se
 
-  This plugin reads availble values of Senseair Co2 Sensors.
+  This plugin reads available values of Senseair Co2 Sensors.
   Datasheet can be found here:
   S8: http://www.senseair.com/products/oem-modules/senseair-s8/
   K30: http://www.senseair.com/products/oem-modules/k30/
@@ -137,7 +137,10 @@ boolean Plugin_052(byte function, struct EventStruct *event, String& string)
               }
               case 1:
               {
-                  int co2 = Plugin_052_readCo2();
+                  static unsigned int _lastCo2 = 0;
+                  unsigned int co2 = Plugin_052_readCo2();
+                  if (co2 >= 10000 || co2 < 100) co2 = _lastCo2;
+                  else _lastCo2 = co2;
                   UserVar[event->BaseVarIndex] = co2;
                   log += F("co2 = ");
                   log += co2;

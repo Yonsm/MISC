@@ -13,3 +13,5 @@ EnNewYear/Sources/PortalFaker.m
 EnNewYear/Release/EnNewYear.dylib
 
 .DS_Store
+
+ESPEasy/src/PrivateConfig.h
