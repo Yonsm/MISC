@@ -138,12 +138,18 @@ boolean Plugin_052(byte function, struct EventStruct *event, String& string)
               case 1:
               {
                   static unsigned int _lastCo2 = 0;
-                  unsigned int co2 = Plugin_052_readCo2();
-                  if (co2 >= 10000 || co2 < 100) co2 = _lastCo2;
-                  else _lastCo2 = co2;
-                  UserVar[event->BaseVarIndex] = co2;
+                  unsigned int readCo2 = Plugin_052_readCo2();
+                  if (readCo2 >= 10000 || readCo2 < 100)
+                  {
+                    UserVar[event->BaseVarIndex] = _lastCo2;
+                  }
+                  else
+                  {
+                      UserVar[event->BaseVarIndex] = (abs(readCo2 - _lastCo2) > 4000) ? _lastCo2 : readCo2;
+                      _lastCo2 = readCo2;
+                  }
                   log += F("co2 = ");
-                  log += co2;
+                  log += readCo2;
                   break;
               }
               case 2:
