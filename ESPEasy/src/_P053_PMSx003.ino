@@ -14,13 +14,31 @@
 
 #define PLUGIN_053
 #define PLUGIN_ID_053 53
+#if defined(_PMS5003ST)
+#define PLUGIN_NAME_053 "Dust - PMS5003ST"
+#elif defined(_PMS5003T)
 #define PLUGIN_NAME_053 "Dust - PMS5003T"
+#else
+#define PLUGIN_NAME_053 "Dust - PMSx003"
+#endif
+#if defined(_PMS5003T) || defined(_PMS5003ST)
 #define PLUGIN_VALUENAME1_053 "PM2.5"
 #define PLUGIN_VALUENAME2_053 "TEMP."
 #define PLUGIN_VALUENAME3_053 "HUM."
+#define PLUGIN_VALUENAME4_053 "HCHO"
+#else
+#define PLUGIN_VALUENAME1_053 "PM1.0"
+#define PLUGIN_VALUENAME2_053 "PM2.5"
+#define PLUGIN_VALUENAME3_053 "PM10"
+#endif
 #define PMSx003_SIG1 0X42
 #define PMSx003_SIG2 0X4d
+#ifdef _PMS5003ST
+#define PMSx003_SIZE 40
+#else
 #define PMSx003_SIZE 32
+#endif
+#define PMSx003_DATA_LEN (PMSx003_SIZE-6)/2
 
 SoftwareSerial *swSerial = NULL;
 boolean Plugin_053_init = false;
@@ -110,12 +128,17 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
       {
         Device[++deviceCount].Number = PLUGIN_ID_053;
         Device[deviceCount].Type = DEVICE_TYPE_TRIPLE;
+#ifdef _PMS5003ST
+        Device[deviceCount].VType = SENSOR_TYPE_QUAD;
+        Device[deviceCount].ValueCount = 4;
+#else
         Device[deviceCount].VType = SENSOR_TYPE_TRIPLE;
+        Device[deviceCount].ValueCount = 3;
+#endif
         Device[deviceCount].Ports = 0;
         Device[deviceCount].PullUpOption = false;
         Device[deviceCount].InverseLogicOption = false;
         Device[deviceCount].FormulaOption = false;
-        Device[deviceCount].ValueCount = 3;
         Device[deviceCount].SendDataOption = true;
         Device[deviceCount].TimerOption = true;
         Device[deviceCount].GlobalSyncOption = true;
@@ -135,6 +158,9 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
         strcpy_P(ExtraTaskSettings.TaskDeviceValueNames[0], PSTR(PLUGIN_VALUENAME1_053));
         strcpy_P(ExtraTaskSettings.TaskDeviceValueNames[1], PSTR(PLUGIN_VALUENAME2_053));
         strcpy_P(ExtraTaskSettings.TaskDeviceValueNames[2], PSTR(PLUGIN_VALUENAME3_053));
+#ifdef _PMS5003ST
+        strcpy_P(ExtraTaskSettings.TaskDeviceValueNames[3], PSTR(PLUGIN_VALUENAME4_053));
+#endif
         success = true;
         break;
       }
@@ -201,7 +227,7 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
         {
           uint16_t checksum = 0, checksum2 = 0;
           uint16_t framelength = 0;
-          uint16_t data[13];
+          uint16_t data[PMSx003_DATA_LEN];
           // byte data_low, data_high;
           int i = 0;
 
@@ -220,7 +246,7 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
               break;
             }
 
-            for (i = 0; i < 13; i++)
+            for (i = 0; i < PMSx003_DATA_LEN; i++)
               SerialRead16(&data[i], &checksum);
 
             log = F("PMSx003 : pm1.0=");
@@ -245,10 +271,25 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
             log += data[8];
             log += F(", 2.5um=");
             log += data[9];
+#if defined(_PMS5003T)
             log += F(", temperature=");
             log += data[10];
             log += F(", humidity=");
             log += data[11];
+#else
+            log += F(", 5.0um=");
+            log += data[10];
+            log += F(", 10um=");
+            log += data[11];
+  #ifdef _PMS5003ST
+            log += F(", hcho=");
+            log += data[12];
+            log += F(", temperature=");
+            log += data[13];
+            log += F(", humidity=");
+            log += data[14];
+  #endif
+#endif
             addLog(LOG_LEVEL_DEBUG_MORE, log);
 
             // Compare checksums
@@ -256,9 +297,20 @@ boolean Plugin_053(byte function, struct EventStruct *event, String& string)
             if (checksum == checksum2)
             {
               // Data is checked and good, fill in output
+#if defined(_PMS5003ST)
+              UserVar[event->BaseVarIndex]     = data[4];
+              UserVar[event->BaseVarIndex + 1] = data[13]/10;
+              UserVar[event->BaseVarIndex + 2] = data[14]/10+10;
+              UserVar[event->BaseVarIndex + 3] = data[12];
+#elif defined(_PMS5003T)
               UserVar[event->BaseVarIndex]     = data[4];
               UserVar[event->BaseVarIndex + 1] = data[10]/10;
               UserVar[event->BaseVarIndex + 2] = data[11]/10+10;
+#else
+              UserVar[event->BaseVarIndex]     = data[3];
+              UserVar[event->BaseVarIndex + 1] = data[4];
+              UserVar[event->BaseVarIndex + 2] = data[5];
+#endif
               values_received = true;
               success = true;
             }
