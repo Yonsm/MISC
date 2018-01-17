@@ -79,13 +79,15 @@
 // You can always change these during runtime and save to eeprom
 // After loading firmware, issue a 'reset' command to load the defaults.
 #include "PrivateConfig.h"
-#define DEFAULT_NAME        "AQI"               // Enter your device friendly name
+#ifndef DEFAULT_NAME
+#define DEFAULT_NAME        "ESPEasy"           // Enter your device friendly name
+#endif
 #ifndef DEFAULT_SSID
   #define DEFAULT_SSID      "WiFiSSID"          // Enter your network SSID
   #define DEFAULT_KEY       "WiFiPassword"      // Enter your network WPA key
 #endif
 #define DEFAULT_DELAY       60                  // Enter your Send delay in seconds
-#define DEFAULT_AP_KEY      "AQIConfig"         // Enter network WPA key for AP (config) mode
+#define DEFAULT_AP_KEY      "ESPConfig"         // Enter network WPA key for AP (config) mode
 
 #ifndef DEFAULT_HTTP_PORT
   #define DEFAULT_HTTP_PORT 80                 // 

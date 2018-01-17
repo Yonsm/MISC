@@ -5,6 +5,6 @@
         "functional": "cpp"
     },
     "terminal.integrated.env.osx": {
-        "PATH": "/Users/Yonsm/.platformio/penv/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Volumes/DATA/Applications/VMware.app/Contents/Public"
+        "PATH": "/Users/Yonsm/.platformio/penv/bin:/Users/Yonsm/.platformio/penv:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/Volumes/DATA/Applications/VMware.app/Contents/Public"
     }
 }
