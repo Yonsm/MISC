@@ -51,6 +51,8 @@ bool WifiIsAP()
 //********************************************************************************
 // Set Wifi AP Mode
 //********************************************************************************
+//#include <user_interface.h>
+#include "PrivateConfig.h"
 void WifiAPMode(boolean state)
 {
   if (WifiIsAP())
@@ -79,6 +81,15 @@ void WifiAPMode(boolean state)
 //********************************************************************************
 boolean WifiConnect(byte connectAttempts)
 {
+#ifdef DEFAULT_MAC
+    uint8 mac[] = { DEFAULT_MAC };
+    bool ret = wifi_set_macaddr(STATION_IF, mac);
+    if (ret)
+      addLog(LOG_LEVEL_INFO, F("wifi_set_macaddr : success"));
+    else
+      addLog(LOG_LEVEL_ERROR, F("wifi_set_macaddr : faulure"));
+#endif
+
   String log = "";
   char hostname[40];
   strncpy(hostname, WifiGetHostname().c_str(), sizeof(hostname));
