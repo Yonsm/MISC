@@ -1,9 +1,9 @@
 
-#import "StockTradeResponse.h"
+#import "MyHTTPResponse.h"
 #import "HTTPServer.h"
 #import "StockTrader.h"
 
-@implementation StockTradeResponse
+@implementation MyHTTPResponse
 
 //
 // load

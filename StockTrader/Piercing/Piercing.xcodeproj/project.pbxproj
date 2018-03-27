@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		242ACC671F0A692500A1A7C3 /* StockTrader.m in Sources */ = {isa = PBXBuildFile; fileRef = 242ACC661F0A692500A1A7C3 /* StockTrader.m */; };
 		242ACC6A1F0A6CAA00A1A7C3 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 242ACC691F0A6CAA00A1A7C3 /* CoreLocation.framework */; };
-		246AFCBD2068CB7E00E214FC /* StockTradeResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AFCB62068CB7D00E214FC /* StockTradeResponse.m */; };
+		246AFCBD2068CB7E00E214FC /* MyHTTPResponse.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AFCB62068CB7D00E214FC /* MyHTTPResponse.m */; };
 		246AFCBE2068CB7E00E214FC /* HTTPServer.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AFCB72068CB7D00E214FC /* HTTPServer.m */; };
 		246AFCC02068CB7E00E214FC /* HTTPResponseHandler.m in Sources */ = {isa = PBXBuildFile; fileRef = 246AFCB92068CB7D00E214FC /* HTTPResponseHandler.m */; };
-		246AFCC12068CB7E00E214FC /* StockTradeResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 246AFCBA2068CB7D00E214FC /* StockTradeResponse.h */; };
+		246AFCC12068CB7E00E214FC /* MyHTTPResponse.h in Headers */ = {isa = PBXBuildFile; fileRef = 246AFCBA2068CB7D00E214FC /* MyHTTPResponse.h */; };
 		246AFCC22068CB7E00E214FC /* HTTPResponseHandler.h in Headers */ = {isa = PBXBuildFile; fileRef = 246AFCBB2068CB7D00E214FC /* HTTPResponseHandler.h */; };
 		246AFCC32068CB7E00E214FC /* HTTPServer.h in Headers */ = {isa = PBXBuildFile; fileRef = 246AFCBC2068CB7D00E214FC /* HTTPServer.h */; };
 		246AFCC52068CC1500E214FC /* StockTrader.h in Headers */ = {isa = PBXBuildFile; fileRef = 246AFCC42068CC1500E214FC /* StockTrader.h */; };
@@ -27,10 +27,10 @@
 /* Begin PBXFileReference section */
 		242ACC661F0A692500A1A7C3 /* StockTrader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockTrader.m; sourceTree = "<group>"; };
 		242ACC691F0A6CAA00A1A7C3 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
-		246AFCB62068CB7D00E214FC /* StockTradeResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StockTradeResponse.m; sourceTree = "<group>"; };
+		246AFCB62068CB7D00E214FC /* MyHTTPResponse.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyHTTPResponse.m; sourceTree = "<group>"; };
 		246AFCB72068CB7D00E214FC /* HTTPServer.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPServer.m; sourceTree = "<group>"; };
 		246AFCB92068CB7D00E214FC /* HTTPResponseHandler.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = HTTPResponseHandler.m; sourceTree = "<group>"; };
-		246AFCBA2068CB7D00E214FC /* StockTradeResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockTradeResponse.h; sourceTree = "<group>"; };
+		246AFCBA2068CB7D00E214FC /* MyHTTPResponse.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyHTTPResponse.h; sourceTree = "<group>"; };
 		246AFCBB2068CB7D00E214FC /* HTTPResponseHandler.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPResponseHandler.h; sourceTree = "<group>"; };
 		246AFCBC2068CB7D00E214FC /* HTTPServer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = HTTPServer.h; sourceTree = "<group>"; };
 		246AFCC42068CC1500E214FC /* StockTrader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StockTrader.h; sourceTree = "<group>"; };
@@ -94,8 +94,8 @@
 				246AFCB72068CB7D00E214FC /* HTTPServer.m */,
 				246AFCBB2068CB7D00E214FC /* HTTPResponseHandler.h */,
 				246AFCB92068CB7D00E214FC /* HTTPResponseHandler.m */,
-				246AFCBA2068CB7D00E214FC /* StockTradeResponse.h */,
-				246AFCB62068CB7D00E214FC /* StockTradeResponse.m */,
+				246AFCBA2068CB7D00E214FC /* MyHTTPResponse.h */,
+				246AFCB62068CB7D00E214FC /* MyHTTPResponse.m */,
 			);
 			path = Sources;
 			sourceTree = "<group>";
@@ -127,7 +127,7 @@
 			isa = PBXHeadersBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				246AFCC12068CB7E00E214FC /* StockTradeResponse.h in Headers */,
+				246AFCC12068CB7E00E214FC /* MyHTTPResponse.h in Headers */,
 				246AFCC52068CC1500E214FC /* StockTrader.h in Headers */,
 				246AFCC32068CB7E00E214FC /* HTTPServer.h in Headers */,
 				246BEA821ED4267C00AE0402 /* Macro.h in Headers */,
@@ -208,7 +208,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				246BEA811ED4267C00AE0402 /* HookUtil.c in Sources */,
-				246AFCBD2068CB7E00E214FC /* StockTradeResponse.m in Sources */,
+				246AFCBD2068CB7E00E214FC /* MyHTTPResponse.m in Sources */,
 				242ACC671F0A692500A1A7C3 /* StockTrader.m in Sources */,
 				246BEA761ED423F300AE0402 /* Main.m in Sources */,
 				246AFCBE2068CB7E00E214FC /* HTTPServer.m in Sources */,
