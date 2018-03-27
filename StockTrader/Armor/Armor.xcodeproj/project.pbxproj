@@ -1,0 +1,339 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		246BEA881ED4276500AE0402 /* Main.m in Sources */ = {isa = PBXBuildFile; fileRef = 246BEA851ED4276500AE0402 /* Main.m */; };
+		246BEA911ED4299700AE0402 /* Piercing.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = 246BEA901ED4299700AE0402 /* Piercing.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+/* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		246BEA8F1ED4296700AE0402 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				246BEA911ED4299700AE0402 /* Piercing.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		246BEA441ED4228900AE0402 /* tztMobileApp_zxsc2.0.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = tztMobileApp_zxsc2.0.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		246BEA851ED4276500AE0402 /* Main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Main.m; sourceTree = "<group>"; };
+		246BEA871ED4276500AE0402 /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		246BEA8A1ED427F800AE0402 /* Proof */ = {isa = PBXFileReference; lastKnownFileType = folder; name = Proof; path = ../Proof; sourceTree = "<group>"; };
+		246BEA901ED4299700AE0402 /* Piercing.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Piercing.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		246BEA411ED4228900AE0402 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		246BEA3B1ED4228900AE0402 = {
+			isa = PBXGroup;
+			children = (
+				246BEA8A1ED427F800AE0402 /* Proof */,
+				246BEA841ED4276500AE0402 /* Sources */,
+				246BEA861ED4276500AE0402 /* Resources */,
+				246BEA451ED4228900AE0402 /* Products */,
+				246BEA8B1ED4288B00AE0402 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		246BEA451ED4228900AE0402 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				246BEA441ED4228900AE0402 /* tztMobileApp_zxsc2.0.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		246BEA841ED4276500AE0402 /* Sources */ = {
+			isa = PBXGroup;
+			children = (
+				246BEA851ED4276500AE0402 /* Main.m */,
+			);
+			path = Sources;
+			sourceTree = "<group>";
+		};
+		246BEA861ED4276500AE0402 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				246BEA871ED4276500AE0402 /* Info.plist */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		246BEA8B1ED4288B00AE0402 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				246BEA901ED4299700AE0402 /* Piercing.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		246BEA431ED4228900AE0402 /* tztMobileApp_zxsc2.0 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 246BEA5B1ED4228900AE0402 /* Build configuration list for PBXNativeTarget "tztMobileApp_zxsc2.0" */;
+			buildPhases = (
+				246BEA401ED4228900AE0402 /* Sources */,
+				246BEA411ED4228900AE0402 /* Frameworks */,
+				246BEA421ED4228900AE0402 /* Resources */,
+				246BEA8E1ED4291500AE0402 /* Armor Piercing Proof Script */,
+				246BEA8F1ED4296700AE0402 /* Embed Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = tztMobileApp_zxsc2.0;
+			productName = Armor;
+			productReference = 246BEA441ED4228900AE0402 /* tztMobileApp_zxsc2.0.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		246BEA3C1ED4228900AE0402 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastUpgradeCheck = 0920;
+				ORGANIZATIONNAME = Yonsm;
+				TargetAttributes = {
+					246BEA431ED4228900AE0402 = {
+						CreatedOnToolsVersion = 8.3.2;
+						DevelopmentTeam = 97Y98KA82X;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = 246BEA3F1ED4228900AE0402 /* Build configuration list for PBXProject "Armor" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 246BEA3B1ED4228900AE0402;
+			productRefGroup = 246BEA451ED4228900AE0402 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				246BEA431ED4228900AE0402 /* tztMobileApp_zxsc2.0 */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		246BEA421ED4228900AE0402 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		246BEA8E1ED4291500AE0402 /* Armor Piercing Proof Script */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Armor Piercing Proof Script";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Check payload\nif [ -z \"$(ls -d \"$SRCROOT\"/../Proof/*.app)\" ]; then\n\techo \"Proof payload is empty.\";\n\texit 1;\nfi\n\n# Fake application\nrm -rf \"$CODESIGNING_FOLDER_PATH\";\ncp -av \"$SRCROOT/../Proof/$FULL_PRODUCT_NAME\" \"$CODESIGNING_FOLDER_PATH\";\nrm -f $CODESIGNING_FOLDER_PATH/embedded.mobileprovision;\nchmod +x $CODESIGNING_FOLDER_PATH/$EXECUTABLE_NAME\n\n# Inject dylib\n$SRCROOT/../Scripts/optool install -t $CODESIGNING_FOLDER_PATH/$EXECUTABLE_NAME -p \"@executable_path/Frameworks/Piercing.framework/Piercing\"";
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		246BEA401ED4228900AE0402 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				246BEA881ED4276500AE0402 /* Main.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		246BEA591ED4228900AE0402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		246BEA5A1ED4228900AE0402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		246BEA5C1ED4228900AE0402 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				INFOPLIST_FILE = Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.Armor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		246BEA5D1ED4228900AE0402 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				DEVELOPMENT_TEAM = 97Y98KA82X;
+				INFOPLIST_FILE = Resources/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				PRODUCT_BUNDLE_IDENTIFIER = net.yonsm.Armor;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		246BEA3F1ED4228900AE0402 /* Build configuration list for PBXProject "Armor" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				246BEA591ED4228900AE0402 /* Debug */,
+				246BEA5A1ED4228900AE0402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		246BEA5B1ED4228900AE0402 /* Build configuration list for PBXNativeTarget "tztMobileApp_zxsc2.0" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				246BEA5C1ED4228900AE0402 /* Debug */,
+				246BEA5D1ED4228900AE0402 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 246BEA3C1ED4228900AE0402 /* Project object */;
+}

@@ -1,2 +1,0 @@
-# DiSiri
-Disable Siri

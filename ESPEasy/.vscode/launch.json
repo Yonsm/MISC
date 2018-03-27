@@ -4,11 +4,13 @@
         {
             "type": "gdb",
             "request": "launch",
-            "cwd": "${workspaceRoot}",
+            "cwd": "${workspaceFolder}",
             "name": "PlatformIO Debugger",
             "target": "/Volumes/DATA/Sites/Misc/ESPEasy/.pioenvs/normal_4096/firmware.elf",
             "gdbpath": "/Users/Yonsm/.platformio/penv/bin/piodebuggdb",
-            "autorun": [ "source .pioinit" ]
+            "autorun": [ "source .pioinit" ],
+            "preLaunchTask": "PlatformIO: Pre-Debug",
+            "internalConsoleOptions": "openOnSessionStart"
         }
     ]
 }

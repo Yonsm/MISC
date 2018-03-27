@@ -1,0 +1,14 @@
+
+#define TEST
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#endif
+
+#import "Macro.h"
+
+#ifdef __OBJC__
+#import "NSUtil.h"
+#endif
+
+#import "HookUtil.h"
